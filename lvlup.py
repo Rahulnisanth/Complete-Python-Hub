@@ -41,7 +41,7 @@ import time
 import random
 
 def waiting_game():
-    print("Welcome to Waiting Game")
+    print(" ---- Welcome to Waiting Game ---- ")
     target = random.randint(1, 5) # Choosing the target timing randomly
     print(f'Your target time is {target} seconds\n')
 
