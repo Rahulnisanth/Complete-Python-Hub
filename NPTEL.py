@@ -105,10 +105,6 @@ def bin_search(seq, v, l, r):
         return bin_search(seq, v, mid+1, r)
 
 
-# Invoking function with required parameters ->
-print(bin_search([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 1, 0, 10))
-
-
 # SELECTION SORTING ALGORITHM ~ T[N] = O(2N)
 def select_sort(l):
     for start in range(len(l)):
@@ -120,9 +116,6 @@ def select_sort(l):
     return (l)
 
 
-# Invoking function with required parameters ->
-print(select_sort([1, 4, 2, 5, 7, 9, 2, 4, 6, 7, 10]))
-
 
 # INSERTION SORTING ~ T[N] = O(2N)
 def insert_sort(l):
@@ -133,9 +126,6 @@ def insert_sort(l):
             pos -= 1
     return (l)
 
-
-# Invoking function with required parameters ->
-print(insert_sort([1, 4, 2, 5, 7, 9, 2, 4, 6, 7, 10]))
 
 
 def histogram(l):
@@ -151,8 +141,6 @@ def histogram(l):
     sorted_pairs = sorted(pairs, key=lambda x: (x[1], x[0]))
     return pairs
 
-
-print(histogram([13, 12, 11, 13, 14, 13, 7, 7, 13, 14, 12]))
 
 
 def transcript(coursedetails, studentdetails, grades):
@@ -176,10 +164,6 @@ def transcript(coursedetails, studentdetails, grades):
     return transcript_list
 
 
-print(transcript([("MA101", "Calculus"), ("PH101", "Mechanics"), ("HU101", "English")], [("UGM2021001", "Rohit Grewal"),
-("UGP2021132", "Neha Talwar")], [("UGM2021001", "MA101", "AB"), ("UGP2021132", "PH101", "B"), ("UGM2021001", "PH101", "B")]))
-
-
 # MERGE SORTING ALGORITHM :
 def merge(a, b):
     (c, m, n) = ([], len(a), len(b))
@@ -197,7 +181,6 @@ def merge(a, b):
 
     return (c)
 
-
 def merge_sort(a, left, right):
     # Case for list with 1 or no elements...
     if right - left <= 1:
@@ -211,9 +194,6 @@ def merge_sort(a, left, right):
 
         return (merge(l, r))  # Merging the left and right halves after parsing
 
-
-a = list(range(0, 1000, 2)) + list(range(1, 1000, 2))
-print(merge_sort(a, 0, 1000))
 
 
 # QUICK SORTING ALGORITHM ~ T[N] = O(N^2)
@@ -236,11 +216,6 @@ def quick_sort(A, l, r):
     quick_sort(A, yellow, r)
 
     return (A)
-
-
-# Invoking the function-->
-l = list(range(100, 0, -1))
-print(quick_sort(l, 0, len(l)))
 
 
 
