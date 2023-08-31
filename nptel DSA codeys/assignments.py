@@ -122,9 +122,60 @@ def transcript(coursedetails, studentdetails, grades):
             transcript_list.append((roll, name, sorted_grades))
     return transcript_list
 
-
-
-
+# PRINTING THE GPA OF STUDENTS WITH GIVEN DETAILS
+data = {}
+section = input()
+while section != "EndOfInput":
+    data[section] = []
+    while True:
+        line = input()
+        if line == "EndOfInput" or line == "Courses" or line == "Students" or line == "Grades":
+            section = line
+            break
+        data[section].append(line)
+course_info = {}
+student_info = {}
+grades_info = {}
+for line in data["Courses"]:
+    course_code, course_name, _, _, _ = line.split('~')
+    course_info[course_code] = (course_name, 0, 0)  
+for line in data["Students"]:
+    roll_number, full_name = line.split('~')
+    student_info[roll_number] = (full_name, {}) 
+for line in data["Grades"]:
+    course_code, _, _, roll_number, grade = line.split('~')
+    if grade == "A":
+        grade_point = 10
+    elif grade == "AB":
+        grade_point = 9
+    elif grade == "B":
+        grade_point = 8
+    elif grade == "BC":
+        grade_point = 7
+    elif grade == "C":
+        grade_point = 6
+    elif grade == "CD":
+        grade_point = 5
+    elif grade == "D":
+        grade_point = 4
+    else:
+        grade_point = 0
+    if roll_number in student_info:
+        student_info[roll_number][1][course_code] = grade_point
+        course_info[course_code] = (course_info[course_code][0], course_info[course_code][1] + grade_point, course_info[course_code][2] + 1)
+# Calculate GPA for each student
+gpa_info = {}
+for roll_number, (full_name, grades) in student_info.items():
+    total_grade_points = sum(grades.values())
+    total_courses = len(grades)
+    if total_courses == 0:
+        gpa_info[roll_number] = 0
+    else:
+        gpa_info[roll_number] = total_grade_points / total_courses
+# Print the output sorted by roll number
+for roll_number, (full_name, _) in sorted(student_info.items()):
+    avg_gpa = round(gpa_info.get(roll_number, 0), 2)
+    print(f"{roll_number}~{full_name}~{avg_gpa}")
 
 
 
