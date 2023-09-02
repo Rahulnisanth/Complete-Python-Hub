@@ -1,3 +1,4 @@
+# COLLECTING THE MEDALS OF PLAYER OF OLYMPICS :
 from collections import namedtuple
 
 with open('olympics.txt', 'r', encoding='utf-8') as file:

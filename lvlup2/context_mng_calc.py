@@ -1,3 +1,4 @@
+# CREATION OF CALCULATING CLASS WHICH FREEZES WHEN A ERROR IS OCCURRED :
 class Calculator:
     def __init__(self, *exc_types):
         self.exc_types = exc_types

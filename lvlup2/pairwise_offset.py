@@ -1,3 +1,4 @@
+# SETTING A OFFSET PAIR-WISELY :
 from itertools import tee, zip_longest, chain
 
 def pairwise_offset(sequence, fillvalue='*', offset=0):

@@ -1,3 +1,4 @@
+# ARGUMENT CHECKING DECORATOR :
 from functools import wraps
 
 def arg_checker(*arg_types):
