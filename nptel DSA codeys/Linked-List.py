@@ -43,13 +43,9 @@ class Node:
         lst = []
         if self.value is None:
             return lst
-        
         temp = self
         while temp is not None:
             lst.append(temp.value)
             temp = temp.next
         return lst
 
-
-
-    
