@@ -1,6 +1,5 @@
 # N P T E L  ASSIGNMENTS :-
 
-
 def delchar(buffer, t):
     new_string = ""
     for i in buffer:
