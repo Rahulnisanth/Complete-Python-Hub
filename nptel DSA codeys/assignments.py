@@ -1,5 +1,6 @@
 # N P T E L  ASSIGNMENTS :-
 
+
 def delchar(buffer, t):
     new_string = ""
     for i in buffer:
@@ -103,6 +104,16 @@ def histogram(l):
     pairs = [(num, counts[num]) for num in sorted(counts.keys())]
     sorted_pairs = sorted(pairs, key=lambda x: (x[1], x[0]))
     return pairs
+
+
+def sub_sequence(arr):
+    n = len(arr)
+    best = [1] * n
+    for i in range(1, n):
+        for j in range(i):
+            if arr[i] % arr[j] == 0 and best[i] < best[j] + 1:
+                best[i] = best[j] + 1
+    return (max(best))
 
 
 def transcript(coursedetails, studentdetails, grades):

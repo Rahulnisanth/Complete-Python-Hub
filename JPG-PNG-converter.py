@@ -16,3 +16,8 @@ for files in os.listdir(image_folder):
     clean_name = os.path.splitext(files)[0]
     img.save(f'{output_folder}{clean_name}.png', 'png')
     print('Done!')
+
+
+
+
+
