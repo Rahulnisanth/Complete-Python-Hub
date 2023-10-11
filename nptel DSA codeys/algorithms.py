@@ -59,19 +59,6 @@ def insert_sort(l):
     return (l)
 
 
-# BINARY SEARCH ALGORITHM ~ T(N) = O(LOG N//2)
-def bin_search(seq, v, l, r):
-    if (r - l == 0):
-        return False
-    mid = (l + r) // 2  # Middle index of the sorted list
-    if (v == seq[mid]):
-        return True
-    elif (v < seq[mid]):
-        return bin_search(seq, v, l, mid)
-    else:
-        return bin_search(seq, v, mid+1, r)
-
-
 # SELECTION SORTING ALGORITHM ~ T[N] = O(2N)
 def select_sort(l):
     for start in range(len(l)):
@@ -87,9 +74,19 @@ def select_sort(l):
 def l_search(arr, v):
     for i in range(0, len(arr)):
         if arr[i] == v:
-            return ('Found')
+            return True
     return None
 
-arr = [i for i in range(0, 100, 2)]
-v = 88
-print('Search status :', l_search(arr, v))
+
+# BINARY SEARCH ALGORITHM ~ T(N) = O(LOG N//2)
+def bin_search(seq, v, l, r):
+    if (r - l == 0):
+        return False
+    mid = (l + r) // 2  # Middle index of the sorted list
+    if (v == seq[mid]):
+        return True
+    elif (v < seq[mid]):
+        return bin_search(seq, v, l, mid)
+    else:
+        return bin_search(seq, v, mid+1, r)
+
