@@ -59,6 +59,16 @@ def insert_sort(l):
     return (l)
 
 
+#BUBBLE SORTING ALGORITHM ~ T[N] = O(N^2)
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(i+1, n):
+            if arr[i] < arr[j]:
+                arr[i], arr[j] = arr[j], arr[i]
+    return arr
+        
+
 # SELECTION SORTING ALGORITHM ~ T[N] = O(2N)
 def select_sort(l):
     for start in range(len(l)):
@@ -70,7 +80,7 @@ def select_sort(l):
     return (l)
 
 
-# LINEAR SEARCH ALGORITHM ~ T(N) = O(LOG N)
+# LINEAR SEARCH ALGORITHM ~ T(N) = O(N)
 def l_search(arr, v):
     for i in range(0, len(arr)):
         if arr[i] == v:
@@ -78,7 +88,7 @@ def l_search(arr, v):
     return None
 
 
-# BINARY SEARCH ALGORITHM ~ T(N) = O(LOG N//2)
+# BINARY SEARCH ALGORITHM ~ T(N) = O(N / 2)
 def bin_search(seq, v, l, r):
     if (r - l == 0):
         return False
