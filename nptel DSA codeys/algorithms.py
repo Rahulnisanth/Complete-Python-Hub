@@ -59,7 +59,7 @@ def insert_sort(l):
     return (l)
 
 
-#BUBBLE SORTING ALGORITHM ~ T[N] = O(N^2)
+# BUBBLE SORTING ALGORITHM ~ T[N] = O(N^2)
 def bubble_sort(arr):
     n = len(arr)
     for i in range(n):
@@ -67,7 +67,7 @@ def bubble_sort(arr):
             if arr[i] < arr[j]:
                 arr[i], arr[j] = arr[j], arr[i]
     return arr
-        
+
 
 # SELECTION SORTING ALGORITHM ~ T[N] = O(2N)
 def select_sort(l):
