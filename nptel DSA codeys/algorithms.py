@@ -1,5 +1,6 @@
 # PYTHON ALGORITHMS :-
 
+
 # QUICK SORTING ALGORITHM ~ T[N] = O(N^2)
 def quick_sort(A, l, r):
     # Base case for no elements or 1 element in list :
@@ -9,7 +10,7 @@ def quick_sort(A, l, r):
     # yellow => small elements,
     # green => large elements
     yellow = l + 1
-    for green in range(l+1, r):
+    for green in range(l + 1, r):
         if A[green] <= A[l]:
             (A[yellow], A[green]) = (A[green], A[yellow])
             yellow += 1
@@ -18,23 +19,23 @@ def quick_sort(A, l, r):
     # Recursive call...
     quick_sort(A, l, yellow - 1)
     quick_sort(A, yellow, r)
-    return (A)
+    return A
 
 
 # MERGE SORTING ALGORITHM :
 def merge(a, b):
     (c, m, n) = ([], len(a), len(b))
     (i, j) = (0, 0)
-    while i+j < m+n:
+    while i + j < m + n:
         # Case if A is empty or head of list[a] is greater...
         if i == m or a[i] > b[j]:
             c.append(b[j])
-            j = j+1
+            j = j + 1
         # Case if B is empty or head of the list[a] is smallest...
         elif j == n or a[i] <= b[j]:
             c.append(a[i])
-            i = i+1
-    return (c)
+            i = i + 1
+    return c
 
 
 def merge_sort(a, left, right):
@@ -43,10 +44,10 @@ def merge_sort(a, left, right):
         return a[left:right]
     # Case for list with more than 1 elements...
     if right - left > 1:
-        mid = (left+right)//2
+        mid = (left + right) // 2
         l = merge_sort(a, left, mid)  # parsing the left half of the list
         r = merge_sort(a, mid, right)  # parsing the right half of the list
-        return (merge(l, r))  # Merging the left and right halves after parsing
+        return merge(l, r)  # Merging the left and right halves after parsing
 
 
 # INSERTION SORTING ~ T[N] = O(2N)
@@ -56,14 +57,14 @@ def insert_sort(l):
         while pos > 0 and l[pos] < l[pos - 1]:
             l[pos], l[pos - 1] = l[pos - 1], l[pos]
             pos -= 1
-    return (l)
+    return l
 
 
 # BUBBLE SORTING ALGORITHM ~ T[N] = O(N^2)
 def bubble_sort(arr):
     n = len(arr)
     for i in range(n):
-        for j in range(i+1, n):
+        for j in range(i + 1, n):
             if arr[i] < arr[j]:
                 arr[i], arr[j] = arr[j], arr[i]
     return arr
@@ -77,7 +78,7 @@ def select_sort(l):
             if l[i] < l[min_pos]:
                 min_pos = i
         (l[start], l[min_pos]) = (l[min_pos], l[start])
-    return (l)
+    return l
 
 
 # LINEAR SEARCH ALGORITHM ~ T(N) = O(N)
@@ -90,13 +91,12 @@ def l_search(arr, v):
 
 # BINARY SEARCH ALGORITHM ~ T(N) = O(N / 2)
 def bin_search(seq, v, l, r):
-    if (r - l == 0):
+    if r - l == 0:
         return False
     mid = (l + r) // 2  # Middle index of the sorted list
-    if (v == seq[mid]):
+    if v == seq[mid]:
         return True
-    elif (v < seq[mid]):
+    elif v < seq[mid]:
         return bin_search(seq, v, l, mid)
     else:
-        return bin_search(seq, v, mid+1, r)
-
+        return bin_search(seq, v, mid + 1, r)
