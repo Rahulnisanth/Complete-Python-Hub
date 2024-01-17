@@ -1,7 +1,11 @@
 #  CONTAINER WITH MOST WATER :
-def mostWater(num) -> int:
+def mostWater(height) -> int:
     maxArea = 0
-    for i in range(len(num)):
-        for j in range(i + 1, len(num)):
-            maxArea = max(maxArea, min(num[i], num[j]) * (j - i))
+    start, bound = 0, len(height) - 1
+    while start < bound:
+        maxArea = max(maxArea, min(height[start], height[bound]) * (bound - start))
+        if height[start] < height[bound]:
+            start += 1
+        else:
+            bound -= 1
     return maxArea
