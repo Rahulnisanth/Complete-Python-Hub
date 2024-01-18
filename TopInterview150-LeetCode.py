@@ -24,3 +24,14 @@ def rightRotater(arr, k) -> list[int]:
     rotater(arr, k, len(arr) - 1)
     rotater(arr, 0, k - 1)
     return arr
+
+
+# MEDIAN OF THE GIVEN ARRAY :
+def findMedianSortedArrays(nums1, nums2) -> float:
+    nums1 += nums2
+    nums1.sort()
+    n = len(nums1)
+    if n % 2 == 0:
+        return (nums1[n // 2] + nums1[(n // 2) - 1]) / 2
+    else:
+        return nums1[n // 2]
