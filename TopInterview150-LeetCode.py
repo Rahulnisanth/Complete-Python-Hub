@@ -35,3 +35,8 @@ def findMedianSortedArrays(nums1, nums2) -> float:
         return (nums1[n // 2] + nums1[(n // 2) - 1]) / 2
     else:
         return nums1[n // 2]
+
+
+# POWER (X, N) :
+def powerFunc(x: float, n: int) -> float:
+    return x**n
