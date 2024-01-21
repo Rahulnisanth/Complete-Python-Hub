@@ -70,3 +70,25 @@ def spiralOrder(matrix):
             left += 1
 
     return spiralMatrix
+
+
+# VALID PARENTHESIS :
+def isValid(s: str) -> bool:
+    stack = []
+    for char in s:
+        if char in ["(", "{", "["]:
+            stack.append(char)
+        else:
+            if not stack:
+                return False
+            current_char = stack.pop()
+            if current_char == "(":
+                if char != ")":
+                    return False
+            if current_char == "{":
+                if char != "}":
+                    return False
+            if current_char == "[":
+                if char != "]":
+                    return False
+    return False if stack else True
