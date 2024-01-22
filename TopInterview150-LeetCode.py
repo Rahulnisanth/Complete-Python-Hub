@@ -92,3 +92,19 @@ def isValid(s: str) -> bool:
                 if char != "]":
                     return False
     return False if stack else True
+
+
+# GAS STATION :
+def canCompleteCircuit(gas: [int], cost: [int]) -> int:
+        start = remainingGas = totalGas = 0
+        for i in range(len(gas)):
+            diff = gas[i] - cost[i]
+            if remainingGas >= 0:
+                remainingGas += diff
+            else:
+                start = i
+                remainingGas = diff
+            totalGas += diff
+        if totalGas >= 0:
+            return start
+        return -1
