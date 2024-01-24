@@ -128,3 +128,17 @@ def convert(s: str, numRows: int) -> str:
             for i in range(numRows):
                 rows[i] = ''.join(rows[i])
             return ''.join(rows)
+
+
+# MINIMUM SIZE SUB-ARRAY SUM :
+def minSubArrayLen( target, nums):
+    i, j, summation = 0, 0, 0
+    ans = 10000000
+    while j < len(nums):
+        summation += nums[j]
+        while summation >= target:
+            ans = min(ans, j - i + 1)
+            summation -= nums[i]
+            i += 1
+        j += 1
+    return 0 if ans == 10000000 else ans
