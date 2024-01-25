@@ -142,3 +142,23 @@ def minSubArrayLen( target, nums):
             i += 1
         j += 1
     return 0 if ans == 10000000 else ans
+
+
+# TRAPPING RAIN WATER :
+def trap(height) -> int:
+        water, n = 0, len(height)
+        leftMax = [0] * n
+        rightMax = [0] * n
+
+        leftMax[0] = height[0]
+        for i in range(1, n):
+            leftMax[i] = max(leftMax[i - 1], height[i])
+        
+        rightMax[n - 1] = height[n - 1]
+        for i in range(n-2, -1, -1):
+            rightMax[i] = max(rightMax[i + 1], height[i])
+
+        for i in range(n):
+            water += min(leftMax[i], rightMax[i]) - height[i]
+            
+        return water
