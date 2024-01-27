@@ -162,3 +162,13 @@ def trap(height) -> int:
             water += min(leftMax[i], rightMax[i]) - height[i]
             
         return water
+
+
+# GROUP ANAGRAMS :
+from collections import defaultdict
+def groupAnagrams(strs) :
+        myDict = defaultdict(list)
+        for word in strs:
+            sortedWord = ''.join(sorted(word))
+            myDict[sortedWord].append(word)
+        return list(myDict.values())
