@@ -183,3 +183,12 @@ def plusOne(digits):
             digits[i] = 0
         digits = [1] + [0] * len(digits)
         return digits
+
+
+# TRAILING-ZEROES [FACTORIAL] :
+def trailingZeroes(n: int) -> int:
+        count = 0
+        while n >= 5:
+            n //= 5
+            count += n
+        return count
