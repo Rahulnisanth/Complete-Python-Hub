@@ -192,3 +192,20 @@ def trailingZeroes(n: int) -> int:
             n //= 5
             count += n
         return count
+
+
+# SQRT(X) WITHOUT IN-BUILT FUNCTION :
+def mySqrt(x: int) -> int:
+        if x < 2:
+            return x
+        # BINARY SEARCH MODULE -->
+        start, end = 1, x
+        while start <= end:
+            mid = (start + end) // 2
+            if mid * mid == x:
+                return mid
+            elif mid * mid < x:
+                start = mid + 1
+            else:
+                end = mid - 1
+        return end
