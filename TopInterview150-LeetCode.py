@@ -244,3 +244,28 @@ def dailyTemperatures(temperatures) :
                 waitingDays[prev_idx] = i - prev_idx
             stack.append(i)
         return waitingDays
+
+
+# MAX POINTS IN A STRAIGHT LINE :
+from collections import defaultdict
+def maxPoints(points) -> int:
+        if len(points) <= 1:
+            return len(points)
+        max_points = 1
+        for i in range(len(points)):
+            slopes = defaultdict(int)
+            duplicate_points = 0
+            current_max = 1
+
+            for j in range(i + 1, len(points)):
+                x1, y1 = points[i]
+                x2, y2 = points[j]
+                if x1 == x2 and y1 == y2:
+                    duplicate_points += 1
+                else:
+                    # calculate the slopes foe every point-paris ...
+                    slope = float('inf') if x1 == x2 else (y2 - y1) / (x2 - x1)
+                    slopes[slope] += 1
+                    current_max = max(current_max, slopes[slope])
+            max_points = max(max_points, current_max + duplicate_points + 1)
+        return max_points
