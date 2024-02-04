@@ -318,3 +318,21 @@ def decode_pin(pinArray):
         else:
             result += str(digit)
     return result
+
+
+# ADDITION OF BINARY NUMBERS :
+def addBinary(a: str, b: str) -> str:
+        result = ''
+        ax = len(a) - 1
+        bx = len(b) - 1
+        carry = 0
+        while ax >= 0 or bx >= 0:
+            sum = carry
+            if ax >= 0 : sum += int(a[ax])
+            if bx >= 0 : sum += int(b[bx])
+            result += str(sum % 2)
+            carry = sum // 2
+            ax -= 1
+            bx -= 1
+        if carry != 0 : result += str(carry)
+        return result[::-1]
