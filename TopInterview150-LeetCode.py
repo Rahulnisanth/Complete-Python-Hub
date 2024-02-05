@@ -336,3 +336,9 @@ def addBinary(a: str, b: str) -> str:
             bx -= 1
         if carry != 0 : result += str(carry)
         return result[::-1]
+
+
+# REVERSING THE BINARY NUMBER TO INTEGER :
+def reverseBits(n: int) -> int:
+    n = format(n, 'b').zfill(32)[::-1]
+    return int(n, 2)
