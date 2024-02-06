@@ -342,3 +342,16 @@ def addBinary(a: str, b: str) -> str:
 def reverseBits(n: int) -> int:
     n = format(n, 'b').zfill(32)[::-1]
     return int(n, 2)
+
+
+# COUNTING THE NO.OF 1S IN A BINARY NUMBER:
+def hammingWeight(n):
+    count = 0
+    while n != 0:
+        n &= (n - 1)
+        count += 1
+    return count
+#       [or]
+def hammingWeight(n):
+    string = bin(n)[2:]
+    return string.count('1')
