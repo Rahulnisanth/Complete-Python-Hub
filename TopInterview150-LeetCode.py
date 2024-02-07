@@ -355,3 +355,11 @@ def hammingWeight(n):
 def hammingWeight(n):
     string = bin(n)[2:]
     return string.count('1')
+
+
+# SINGLE NUMBER MANIPULATION :
+def singleNumber(nums) -> int:
+    result = 0
+    for num in nums:
+        result ^= num
+    return result
