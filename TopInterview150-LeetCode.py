@@ -363,3 +363,16 @@ def singleNumber(nums) -> int:
     for num in nums:
         result ^= num
     return result
+
+
+# SINGLE NUMBER MANIPULATION II :
+def singleNumber(nums) -> int:
+    ones = 0
+    twos = 0
+    for num in nums:
+        twos |= ones & num
+        ones ^= num
+        mask = ~(ones & twos)
+        ones &= mask
+        twos &= mask
+    return ones
