@@ -376,3 +376,33 @@ def singleNumber(nums) -> int:
         ones &= mask
         twos &= mask
     return ones
+
+
+# VALID SUDOKU MATRIX :
+def isValidSudoku(board) -> bool:
+        # MAIN-DRIVE :
+        def isValidRow(row):
+            seen = set()
+            for num in row:
+                if num != ".":
+                    if num in seen:
+                        return False
+                    seen.add(num)
+            return True
+        # Row checking :
+        for row in board:
+            if not isValidRow(row):
+                return False
+        # Column checking :
+        for col in range(9):
+            column  = [board[row][col] for row in range(9)]
+            if not isValidRow(column):
+                return False
+        # Sub-Box checking :
+        for i in range(0, 9, 3):
+            for j in range(0, 9, 3):
+                subBox = [board[x][y] for x in range(i,i+3) for y in range(j,j+3)]
+                if not isValidRow(subBox):
+                    return False
+        return True
+        
