@@ -71,3 +71,43 @@ def rotate(matrix) -> None:
     
     for i in range(n):
         matrix[i] = matrix[i][::-1]
+
+
+# SET MATRIX ZEROES :
+def setZeroes(matrix):
+    row = len(matrix)
+    col = len(matrix[0])
+    firstRowZero = False
+    firstColZero = False
+
+    for i in range(row):
+        if matrix[i][0] == 0:
+            firstColZero = True
+            break
+    
+    for j in range(col):
+        if matrix[0][j] == 0:
+            firstRowZero = True
+            break
+    
+    
+    for i in range(1, row):
+        for j in range(1, col):
+            if matrix[i][j] == 0:
+                matrix[i][0] = 0
+                matrix[0][j] = 0
+
+    for i in range(1, row):
+        for j in range(1, col):
+            if matrix[i][0] == 0 or matrix[0][j] == 0:
+                matrix[i][j] = 0
+
+    if firstRowZero:
+        for j in range(col):
+            matrix[0][j] = 0
+    
+    if firstColZero:
+        for i in range(row):
+            matrix[i][0] = 0
+    
+    return matrix
