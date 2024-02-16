@@ -87,3 +87,22 @@ def longestConsecutive(nums) -> int:
             num -= 1
         maxLength = max(maxLength, longest - num - 1)
     return maxLength
+
+
+# RANSOM NOTE MATCHER :
+def canConstruct(ransomNote: str, magazine: str) -> bool:
+    mapper = {}
+    # Iterate through magazine :
+    for char in magazine:
+        if char not in mapper:
+            mapper[char] = 1
+        else:
+            mapper[char] += 1
+    #  Iterate through ransom-notes :
+    for char in ransomNote:
+        if char in mapper and mapper[char] > 0:
+            mapper[char] -= 1
+        else:
+            return False
+    
+    return True
