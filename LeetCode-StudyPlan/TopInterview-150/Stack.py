@@ -47,3 +47,32 @@ def dailyTemperatures(temperatures) :
                 waitingDays[prev_idx] = i - prev_idx
             stack.append(i)
         return waitingDays
+
+
+# BASIC CALCULATOR USING STACK :
+def calculate(s: str) -> int:
+    operand, result, sign, stack = 0, 0, 1, []
+    
+    for char in s:
+        if char.isdigit():
+            operand = operand * 10 + int(char)
+        elif char == '+':
+            result += sign * operand
+            sign = 1
+            operand = 0
+        elif char == '-':
+            result += sign * operand
+            sign = -1
+            operand = 0
+        elif char == '(':
+            stack.append(result)
+            stack.append(sign)
+            sign = 1
+            result = 0
+        elif char == ')':
+            result += sign * operand
+            result *= stack.pop()  
+            result += stack.pop() 
+            operand = 0
+
+    return result + sign * operand
