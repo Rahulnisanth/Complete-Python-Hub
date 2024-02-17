@@ -76,3 +76,20 @@ def calculate(s: str) -> int:
             operand = 0
 
     return result + sign * operand
+
+
+# REMOVAL OF UNBALANCED PARENTHESIS IN A STRING :
+def remove_unbalanced_parentheses(s:str) -> str:
+    stack = []
+    balanced_indexes = set()
+
+    for i, char in enumerate(s):
+        if char == '(':
+            stack.append(i)
+        elif char == ')':
+            if stack:
+                balanced_indexes.add(stack.pop())
+                balanced_indexes.add(i)
+    
+    balanced_string = ''.join([char for i, char in enumerate(s) if i in balanced_indexes or char not in '()'])
+    return balanced_string
