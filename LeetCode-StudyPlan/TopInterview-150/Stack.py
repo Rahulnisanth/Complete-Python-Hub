@@ -93,3 +93,28 @@ def remove_unbalanced_parentheses(s:str) -> str:
     
     balanced_string = ''.join([char for i, char in enumerate(s) if i in balanced_indexes or char not in '()'])
     return balanced_string
+
+
+# REVERSE POLISH STRING :
+def evalRPN(tokens) -> int:
+    stack = []
+    operators = ["*","-","+","/"]
+
+    for token in tokens:
+        if token in operators:
+            num2 = stack.pop()
+            num1 = stack.pop()
+            if token == "+": 
+                result = num1 + num2
+            elif token == "-": 
+                result = num1 - num2
+            elif token == "*": 
+                result = num1 * num2
+            elif token == "/": 
+                result = int(num1 / num2)
+            stack.append(result)
+        else:
+            stack.append(int(token))
+    
+    return stack[0]
+                
