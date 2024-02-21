@@ -39,3 +39,21 @@ def findPeakElement(nums) -> int:
             start = mid + 1
     
     return start
+
+
+# SEARCH IN A 2D ARRAY / MATRIX :
+def searchMatrix(matrix, target: int) -> bool:
+    rows, cols = len(matrix), len(matrix[0])
+    start, end = 0, (rows * cols) - 1
+
+    while start <= end:
+        mid = (start + end) // 2
+        midVal = matrix[mid // cols][mid % cols]
+        if midVal == target:
+            return True
+        elif midVal < target:
+            start = mid + 1
+        else:
+            end = mid - 1
+            
+    return False
