@@ -57,3 +57,58 @@ def searchMatrix(matrix, target: int) -> bool:
             end = mid - 1
             
     return False
+
+
+# SEARCH TARGET IN ROTATED ARRAY :
+def search(nums, target: int) -> int:
+    if not nums:
+        return -1
+    else:
+        start, end = 0, len(nums) - 1
+        while start <= end:
+            mid = (start + end) // 2
+            if nums[mid] == target:
+                return mid
+            if nums[start] <= nums[mid]:
+                if nums[start] <= target < nums[mid]:
+                    end = mid - 1
+                else:
+                    start = mid + 1
+            else:
+                if nums[mid] < target <= nums[end]:
+                    start = mid + 1
+                else:
+                    end = mid - 1
+        return -1
+
+
+# FIND THE FIRST & LAST INDEX OF THE TARGET :
+def searchRange(nums, target: int):
+    def binaryLeft(nums, target):
+        start, end = 0, len(nums) - 1
+        while start <= end:
+            mid = (start + end) // 2
+            if nums[mid] < target:
+                start = mid + 1
+            else:
+                end = mid - 1
+        return start
+    
+    def binaryRight(nums, target):
+        start, end = 0, len(nums) - 1
+        while start <= end:
+            mid = (start + end) // 2
+            if nums[mid] <= target:
+                start = mid + 1
+            else:
+                end = mid - 1
+        return end
+    
+    leftIndex = binaryLeft(nums, target)
+    rightIndex = binaryRight(nums, target)
+
+    if leftIndex <= rightIndex:
+        return [leftIndex, rightIndex]
+    else:
+        return [-1, -1]
+        
