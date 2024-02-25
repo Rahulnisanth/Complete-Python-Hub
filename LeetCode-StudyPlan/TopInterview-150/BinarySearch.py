@@ -111,4 +111,19 @@ def searchRange(nums, target: int):
         return [leftIndex, rightIndex]
     else:
         return [-1, -1]
-        
+
+
+# SEARCH MINIMUM ELEMENT IN A ROTATED SORTED ARRAY :
+def findMin(nums) -> int:
+    start, end = 0, len(nums) - 1
+    if nums[start] < nums[end]:
+        return nums[start]
+    else:
+        while start < end:
+            mid = (start + end) // 2
+            if nums[mid] > nums[end]:
+                start = mid + 1
+            else:
+                end = mid
+                
+        return nums[start]
