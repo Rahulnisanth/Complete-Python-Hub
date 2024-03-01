@@ -127,3 +127,4 @@ def findMin(nums) -> int:
                 end = mid
                 
         return nums[start]
+    
