@@ -24,3 +24,20 @@ def letterCombinations(digits: str):
     
     backtrack('', 0)
     return result
+
+
+# ARRAY PERMUTATIONS :
+def permute(nums) :
+    def backtrack(resultList, tempList, nums):
+        if len(tempList) == len(nums):
+            resultList.append(tempList[:])
+            return
+        else:
+            for number in nums: 
+                if number not in tempList:
+                    tempList.append(number)
+                    backtrack(resultList, tempList, nums)
+                    tempList.pop()
+    resultList = []
+    backtrack(resultList, [], nums)
+    return resultList
