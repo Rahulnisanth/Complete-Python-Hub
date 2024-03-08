@@ -239,3 +239,13 @@ def strStr(self, haystack: str, needle: str) -> int:
         return haystack.index(needle)
     except ValueError:
         return -1
+
+
+# TOTAL MAXIMUM FREQUENCY OF THE ARRAY :
+def maxFrequencyElements(nums) -> int:
+    counts = [nums.count(num) for num in set(nums)]
+    maxCount = 0
+    for count in counts:
+        if count == max(counts):
+            maxCount += count
+    return maxCount
