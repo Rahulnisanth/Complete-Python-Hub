@@ -234,7 +234,7 @@ def convert(s: str, numRows: int) -> str:
 
 
 # FIND THE OCCURRENCE OF THE STRING :
-def strStr(self, haystack: str, needle: str) -> int:
+def strStr(haystack: str, needle: str) -> int:
     try:
         return haystack.index(needle)
     except ValueError:
@@ -249,3 +249,9 @@ def maxFrequencyElements(nums) -> int:
         if count == max(counts):
             maxCount += count
     return maxCount
+
+
+# GET THE COMMON ELEMENT WITH MORE FREQUENCY :
+def getCommon(nums1, nums2) -> int:
+    commons = set(nums1).intersection(set(nums2))
+    return min(commons) if commons else -1
