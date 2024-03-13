@@ -255,3 +255,11 @@ def maxFrequencyElements(nums) -> int:
 def getCommon(nums1, nums2) -> int:
     commons = set(nums1).intersection(set(nums2))
     return min(commons) if commons else -1
+
+
+# PIVOT ELEMENT FOR THE GIVEN RANGE 'N' :
+from math import sqrt
+def pivotInteger(self, n):
+    x = sqrt(n * (n + 1) / 2)
+    converted = int(x)
+    return converted if converted == x else -1

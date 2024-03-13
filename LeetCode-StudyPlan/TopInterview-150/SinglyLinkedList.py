@@ -100,3 +100,40 @@ def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNod
     
     second.next = second.next.next
     return dummy.next
+
+
+# LIST ROTATION :
+def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+    if not head or k == 0:  # If the list is empty or rotation is not needed
+        return head
+    
+    # Calculate the length of the linked list
+    length = 1
+    curr = head
+    while curr.next:
+        length += 1
+        curr = curr.next
+    
+    # Adjust the rotation count to avoid unnecessary rotations
+    k = k % length
+    # If k becomes 0 after adjusting, no rotation needed
+    if k == 0:
+        return head
+    
+    # Traverse to the node which will be the new tail after rotation
+    new_tail_index = length - k - 1
+    new_tail = head
+    for _ in range(new_tail_index):
+        new_tail = new_tail.next
+    
+    # Adjust pointers to perform rotation
+    new_head = new_tail.next
+    new_tail.next = None
+    
+    # Traverse to the current tail to adjust its next pointer
+    curr = new_head
+    while curr.next:
+        curr = curr.next
+    curr.next = head
+    
+    return new_head
