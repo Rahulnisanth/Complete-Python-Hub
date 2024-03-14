@@ -137,3 +137,22 @@ def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
     curr.next = head
     
     return new_head
+
+
+# REMOVE DUPLICATES OF THE LINKED LIST ALONG WITH THE ORIGINAL VALUE :
+def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    dummy = ListNode(0)
+    dummy.next = head
+    prev, curr = dummy, head
+    while(curr):
+        flag = False
+        while(curr.next and curr.val == curr.next.val):
+            curr = curr.next
+            flag = True
+        if flag :
+            prev.next = curr.next
+        else:
+            prev = prev.next
+        curr = curr.next
+
+    return dummy.next

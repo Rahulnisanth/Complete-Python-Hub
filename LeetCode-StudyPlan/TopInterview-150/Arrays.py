@@ -263,3 +263,15 @@ def pivotInteger(self, n):
     x = sqrt(n * (n + 1) / 2)
     converted = int(x)
     return converted if converted == x else -1
+
+
+#  KIDS WITH MOST CANDIES :
+def kidsWithCandies(candies, extraCandies):
+    maxCandy = max(candies)
+    result = []
+    for candy in candies:
+        if candy + extraCandies >= maxCandy:
+            result.append(True)
+        else:
+            result.append(False)
+    return result
