@@ -183,3 +183,17 @@ def mergeInBetween(self, list1: ListNode, a: int, b: int, list2: ListNode) -> Li
     prev.next = list2
     temp2.next = curr.next
     return list1
+
+
+# REVERSAL OF THE LINKED LIST :
+def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    prev = None
+    current = head
+    
+    while current:
+        next_node = current.next
+        current.next = prev
+        prev = current
+        current = next_node
+        
+    return prev
