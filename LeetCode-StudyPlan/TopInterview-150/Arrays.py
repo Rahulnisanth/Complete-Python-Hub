@@ -275,3 +275,14 @@ def kidsWithCandies(candies, extraCandies):
         else:
             result.append(False)
     return result
+
+
+# FINDING THE DUPLICATES :
+def findDuplicates(nums):
+    duplex = {}
+    for num in nums:
+        if num in duplex:
+            duplex[num] += 1
+        else:
+            duplex[num] = 1
+    return [k for k, v in duplex.items() if v >= 2]

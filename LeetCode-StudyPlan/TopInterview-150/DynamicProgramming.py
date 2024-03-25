@@ -22,3 +22,13 @@ def climbStairs(self, n: int) -> int:
         _twoBefore = _oneBefore
         _oneBefore = total
     return total
+
+
+# HOUSE ROBBER :
+def rob(nums) -> int:
+    rob, noRob = 0, 0
+    for i in range(len(nums)):
+        newRob = noRob + nums[i]
+        newNoRob = max(noRob, rob)
+        rob, noRob = newRob, newNoRob
+    return max(rob, noRob)  
