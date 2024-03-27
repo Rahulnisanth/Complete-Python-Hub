@@ -286,3 +286,28 @@ def findDuplicates(nums):
         else:
             duplex[num] = 1
     return [k for k, v in duplex.items() if v >= 2]
+
+
+#  CAN PLACE FLOWERS :
+def canPlaceFlowers(flowerbed, n: int) -> bool:
+    count = 0
+    i = 0
+    while i < len(flowerbed):
+        if flowerbed[i] == 0 and (i == 0 or flowerbed[i - 1] == 0) and (i == len(flowerbed) - 1 or flowerbed[i + 1] == 0):
+            flowerbed[i] = 1
+            count += 1
+        i += 1
+
+    return count >= n
+
+
+# MOVE THE ZEROES TO END OF THE ARRAY IN EXISTING ARRAY :
+def moveZeroes(nums) -> None:
+    start = 0
+    for num in nums:
+        if num != 0:
+            nums[start] = num
+            start += 1
+    for i in range(start, len(nums)):
+        nums[i] = 0
+        

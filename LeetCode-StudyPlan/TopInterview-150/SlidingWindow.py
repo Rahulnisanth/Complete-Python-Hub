@@ -91,3 +91,21 @@ def minWindow(s: str, t: str) -> str:
             start += 1
 
     return "" if min_len == float('inf') else s[start_index:start_index + min_len]
+
+
+# NUMBER OF MINIMUM SUB-PRODUCTS IN A ARRAY <= K :
+def numSubarrayProductLessThanK(nums, k) -> int:
+    if k <= 1:
+        return 0
+
+    count = 0
+    product = 1
+    left = 0        
+    for right in range(len(nums)):
+        product *= nums[right]
+        while product >= k:
+            product /= nums[left]
+            left += 1
+        count += right - left + 1
+    
+    return count
