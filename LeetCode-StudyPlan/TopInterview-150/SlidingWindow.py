@@ -109,3 +109,21 @@ def numSubarrayProductLessThanK(nums, k) -> int:
         count += right - left + 1
     
     return count
+
+
+# LENGTH OF THE LONGEST SUB-ARRAY WITH MOST K FREQUENCY :
+def maxSubarrayLength(nums, k: int) -> int:
+    ans = 0
+    mapper = {}
+    l = 0
+    n = len(nums)
+    for r in range(n):
+        mapper[nums[r]] = mapper.get(nums[r], 0) + 1
+        if mapper[nums[r]] > k:
+            while nums[l] != nums[r]:
+                mapper[nums[l]] -= 1
+                l += 1
+            mapper[nums[l]] -= 1
+            l += 1
+        ans = max(ans, r - l + 1)
+    return ans
