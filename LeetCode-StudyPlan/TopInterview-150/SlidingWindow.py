@@ -127,3 +127,27 @@ def maxSubarrayLength(nums, k: int) -> int:
             l += 1
         ans = max(ans, r - l + 1)
     return ans
+
+
+# COUNTING THE NO. OF SUB-ARRAYS WITH KTH OCCURRENCE OF MAX ELEMENT :
+def countSubarrays(nums, k: int) -> int:
+    maxNum = max(nums)
+    count = 0
+    left = 0
+    right = 0
+    ans = 0
+    
+    while right < len(nums) or left > right:
+        if nums[right] == maxNum:
+            count += 1
+        
+        while count >= k:
+            if nums[left] == maxNum:
+                count -= 1
+            left += 1
+            ans += len(nums) - right
+        
+        right += 1
+    
+    return ans
+
