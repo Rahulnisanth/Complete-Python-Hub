@@ -62,3 +62,12 @@ def rangeBitwiseAnd(left: int, right: int) -> int:
     while right > left:
         right &= right - 1
     return right
+
+
+# COUNT THE NO.OF 1S IN GIVEN RANGE :
+def countBits(n: int):
+    counts = [0] * (n + 1)
+    for i in range(1, n + 1) :
+        counts[i] = counts[i >> 2] + (i & i)
+        # {OR} >>> counts[i] = counts[i // 2] + (i % 2) 
+    return counts
