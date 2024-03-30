@@ -151,3 +151,23 @@ def countSubarrays(nums, k: int) -> int:
     
     return ans
 
+
+# NO. OF SUB-ARRAY WITH MOST GIVEN K DIFFERENT ELEMENTS :
+def subArraysWithKDistinct(nums, k: int) -> int:
+    def subArrayCal(nums, k):
+        mapper, left, right, ans = {}, 0, 0, 0
+        while right < len(nums) :
+            mapper[nums[right]] = mapper.get(nums[right], 0) + 1
+            # Sub-array checker >>>
+            while len(mapper) > k :
+                mapper[nums[left]]  -= 1
+                if mapper[nums[left]] == 0:
+                    del mapper[nums[left]]
+                left += 1
+            right += 1
+            ans += right - left + 1
+        return ans
+    # Main-drive >>>
+    subWithMaxK = subArrayCal(nums, k)
+    reducedSubWithMaxK = subArrayCal(nums, k - 1)
+    return subWithMaxK - reducedSubWithMaxK
