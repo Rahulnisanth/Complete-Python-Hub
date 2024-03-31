@@ -276,4 +276,19 @@ def findDuplicates(nums):
             duplex[num] = 1
     return [k for k, v in duplex.items() if v >= 2]
 
-        
+
+# COUNT THE SUB-ARRAYS WITH FIXED BOUND [MIN & MAX] :
+def countSubarrays(nums, minK: int, maxK: int) -> int:
+    result = 0
+    badIdx = leftIdx = rightIdx = -1
+
+    for i, num in enumerate(nums):
+        if not minK <= num <= maxK:
+            badIdx = i
+        if num == minK:
+            leftIdx = i
+        if num == maxK:
+            rightIdx = i
+        result += max(0, min(leftIdx, rightIdx) - badIdx)
+    
+    return result
