@@ -80,3 +80,17 @@ def productExceptSelf(nums):
             proCurr *= nums[j]
         product[i] = proCurr
     return product
+
+
+# INCREASING TRIPLET :
+def increasingTriplet(nums) -> bool:
+    small = float('inf')
+    mid = float('inf')
+    for big in nums:
+        if big <= small:
+            small = big
+        elif big <= mid:
+            mid = big
+        else:
+            return True
+    return False
