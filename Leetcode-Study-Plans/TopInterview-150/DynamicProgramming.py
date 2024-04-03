@@ -12,7 +12,7 @@ def maxSumAfterPartitioning(arr , k) -> int:
 
 
 # CLIMBING STAIRS :
-def climbStairs(self, n: int) -> int:
+def climbStairs( n: int) -> int:
     if n == 1:
         return 1
     _oneBefore, _twoBefore = 1, 1
@@ -32,3 +32,26 @@ def rob(nums) -> int:
         newNoRob = max(noRob, rob)
         rob, noRob = newRob, newNoRob
     return max(rob, noRob)  
+
+
+# WORD SEARCHING BOARD GAME :
+def exist(board, word: str) -> bool:
+    for i in range(len(board)):
+        for j in range(len(board[i])):
+            if dfs(board, i, j, word, 0):
+                return True
+    return False
+def dfs(board, i, j, word, word_idx): # Recursive[DFS] to analyze the adjacent letters...
+    if board[i][j] != word[word_idx]:
+        return False
+    if word_idx + 1 == len(word):
+        return True
+    board[i][j] = '#'
+    result = (
+            (i > 0 and dfs(board, i - 1, j, word, word_idx + 1)) or
+            (i < len(board) - 1 and dfs(board, i + 1, j, word, word_idx + 1)) or
+            (j > 0 and dfs(board, i, j - 1, word, word_idx + 1)) or
+            (j < len(board[i]) - 1 and dfs(board, i, j + 1, word, word_idx + 1))
+            )
+    board[i][j] = word[word_idx]
+    return result
