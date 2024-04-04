@@ -94,3 +94,34 @@ def increasingTriplet(nums) -> bool:
         else:
             return True
     return False
+
+
+# MAXIMUM NESTING DEPTH OF THE PARENTHESIS :
+def maxDepth(self, s: str) -> int:
+    count, maxNum = 0, 0
+    for ch in s:
+        if ch == "(":
+            count += 1
+            if count > maxNum:
+                maxNum = count
+        if ch == ')':
+            count -= 1
+    return maxNum
+
+
+# STRING COMPRESSION :
+def compress(chars) -> int:
+    i, k = 0, 0
+    while i < len(chars) :
+        j = i
+        while j < len(chars) and chars[j] == chars[i] :
+            j += 1
+        chars[k] = chars[i]
+        k += 1
+        if (j - i) > 1 :
+            s = str((j - i))
+            for ch in s :
+                chars[k] = ch
+                k += 1
+        i = j
+    return k
