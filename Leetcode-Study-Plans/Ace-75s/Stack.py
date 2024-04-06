@@ -9,3 +9,25 @@ def makeGood(s: str) -> str:
                 stack.append(ch)
         return ''.join(stack)
     return s
+
+
+# MINIMUM REMOVE TO MAKE VALID PARENTHESIS :
+def minRemoveToMakeValid(s: str) -> str:
+    result = []
+    stack, invalidIdx = [], set()
+    for i, ch in enumerate(s):
+        if ch == '(':
+            stack.append(i)
+        elif ch == ')':
+            if stack:
+                stack.pop()
+            else:
+                invalidIdx.add(i)
+
+    invalidIdx.update(stack)
+
+    for i, ch in enumerate(s):
+        if i not in invalidIdx:
+            result.append(ch)
+    
+    return ''.join(result)
