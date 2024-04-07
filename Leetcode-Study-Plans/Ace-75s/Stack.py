@@ -31,3 +31,23 @@ def minRemoveToMakeValid(s: str) -> str:
             result.append(ch)
     
     return ''.join(result)
+
+
+# IS VALID STRING :
+def checkValidString(s: str) -> bool:
+    startP, endP = 0, 0
+    for ch in s:
+        if ch == '(':
+            startP += 1 
+            endP += 1
+        if ch == ')':
+            startP -= 1
+            endP -= 1
+        if ch == '*':
+            startP += 1
+            endP -= 1
+        if startP < 0:
+            return False
+        if endP < 0:
+            endP = 0
+    return endP == 0
