@@ -24,3 +24,15 @@ def invertTree(root):
 
     root.left, root.right = root.right, root.left
     return root 
+
+
+# CHECK THE BINARY TREE SYMMETRIC OR NOT :
+def isSymmetric(root) -> bool:
+    return DFS(root.left, root.right) if root != None else True
+def DFS(leftNode, rightNode):
+    if leftNode == None and rightNode == None:
+        return True
+    if leftNode == None or rightNode == None:
+        return False
+    
+    return (leftNode.val == rightNode.val) and DFS(leftNode.left, rightNode.right) and DFS(leftNode.right, rightNode.left) 
