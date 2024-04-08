@@ -51,3 +51,19 @@ def checkValidString(s: str) -> bool:
         if endP < 0:
             endP = 0
     return endP == 0
+
+
+# NUMBER OF STUDENTS UNABLE TO EAT LUNCH ;
+def countStudents(students, sandwiches) -> int:
+    counts = [0, 0]
+    for student in students:
+        counts[student] += 1
+    remain = len(sandwiches)
+    for sandwich in sandwiches:
+        if counts[sandwich] == 0:
+            break
+        if remain == 0:
+            break
+        counts[sandwich] -= 1
+        remain -= 1
+    return remain
