@@ -36,3 +36,14 @@ def DFS(leftNode, rightNode):
         return False
     
     return (leftNode.val == rightNode.val) and DFS(leftNode.left, rightNode.right) and DFS(leftNode.right, rightNode.left) 
+
+
+# PATH SUM OF BINARY TREE :
+def hasPathSum(root: Optional[TreeNode], targetSum: int) -> bool:
+    if not root:
+        return False
+    if not root.left and not root.right:
+        return targetSum == root.val
+    leftSum = hasPathSum(root.left, targetSum - root.val)
+    rightSum = hasPathSum(root.right, targetSum - root.val)
+    return leftSum or rightSum
