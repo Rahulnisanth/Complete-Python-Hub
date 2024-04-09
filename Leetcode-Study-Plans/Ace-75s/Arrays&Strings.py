@@ -125,3 +125,14 @@ def compress(chars) -> int:
                 k += 1
         i = j
     return k
+
+
+# TIME REQUIRED TO BUY TICKETS :
+def timeRequiredToBuy(tickets, k: int) -> int:
+    timeReq = 0
+    for i in range(len(tickets)):
+        if i <= k:
+            timeReq += min(tickets[i], tickets[k])
+        else:
+            timeReq += min(tickets[i], tickets[k] - 1)
+    return timeReq
