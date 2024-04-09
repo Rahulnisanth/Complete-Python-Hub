@@ -47,3 +47,15 @@ def hasPathSum(root: Optional[TreeNode], targetSum: int) -> bool:
     leftSum = hasPathSum(root.left, targetSum - root.val)
     rightSum = hasPathSum(root.right, targetSum - root.val)
     return leftSum or rightSum
+
+
+# COUNT THE TREE NODES :
+def countNodes(root) -> int:
+    if root == None:
+        return 0
+    elif root.right == None:
+        return countNodes(root.left) + 1
+    elif root.left == None:
+        return countNodes(root.right) + 1
+
+    return countNodes(root.left) + countNodes(root.right) + 1
