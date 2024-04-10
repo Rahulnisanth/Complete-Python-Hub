@@ -136,3 +136,12 @@ def timeRequiredToBuy(tickets, k: int) -> int:
         else:
             timeReq += min(tickets[i], tickets[k] - 1)
     return timeReq
+
+
+# PIVOT INDEX :
+def pivotIndex(nums) -> int:
+    for i in range(len(nums)):
+        if sum(nums[:i]) == sum(nums[i+1:]):
+            return i
+    return -1
+
