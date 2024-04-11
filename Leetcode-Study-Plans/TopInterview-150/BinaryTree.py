@@ -59,3 +59,29 @@ def countNodes(root) -> int:
         return countNodes(root.right) + 1
 
     return countNodes(root.left) + countNodes(root.right) + 1
+
+
+# AVERAGE LEVELS OF THE BINARY TREE :
+from collections import deque
+def averageOfLevels(root: Optional[TreeNode]) -> List[float]:
+    if not root:
+        return []
+    else:
+        result = []
+        queue = deque([root])
+        
+        while queue:
+            levelSize = len(queue)
+            levelSum = 0
+
+            for _ in range(levelSize):
+                node = queue.popleft()
+                levelSum += node.val
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+
+            result.append(levelSum / levelSize)
+
+        return result
