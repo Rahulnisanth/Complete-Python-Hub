@@ -138,5 +138,16 @@ def timeRequiredToBuy(tickets, k: int) -> int:
     return timeReq
 
 
+# UNIQUE NUMBER OF OCCURRENCE :
+def uniqueOccurrences(arr) -> bool:
+    occurrence = []
+    arrSet = set(arr)
 
-
+    for num in arrSet:
+        occurrence.append(arr.count(num))
+    
+    for count in occurrence:
+        if occurrence.count(count) > 1:
+            return False
+    
+    return True
