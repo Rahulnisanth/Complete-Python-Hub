@@ -34,3 +34,13 @@ def rob(nums) -> int:
     return max(rob, noRob)  
 
 
+# BEST TIME TO BUY AND SELL [HARD] :
+def maxProfit(prices) -> int:
+    first_buy = second_buy = -prices[0]
+    first_profit = total_profit = 0
+    for price in prices:
+        first_buy = max(first_buy, -price)
+        first_profit = max(first_profit, price + first_buy)
+        second_buy = max(second_buy, first_profit - price)
+        total_profit = max(total_profit, price + second_buy)
+    return total_profit
