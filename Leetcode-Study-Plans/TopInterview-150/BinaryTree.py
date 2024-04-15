@@ -85,3 +85,17 @@ def averageOfLevels(root: Optional[TreeNode]) -> List[float]:
             result.append(levelSum / levelSize)
 
         return result
+
+
+# SUM ROOT TO LEAF NUMBERS ;
+def sumNumbers(self, root: Optional[TreeNode]) -> int:
+    def dfs(node, placer):
+        if not node:
+            return 0
+        placer = placer * 10 + node.val
+        if not node.left and not node.right:
+            return placer
+        else:
+            return dfs(node.left, placer) + dfs(node.right, placer)
+    return dfs(root, 0)
+
