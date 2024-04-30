@@ -44,3 +44,13 @@ def maxProfit(prices) -> int:
         second_buy = max(second_buy, first_profit - price)
         total_profit = max(total_profit, price + second_buy)
     return total_profit
+
+
+# COIN CHANGE CALCULATION :
+def coinChange(coins, amount) -> int:
+        dp = [float('inf')] * (amount + 1)
+        dp[0] = 0
+        for coin in coins:
+            for i in range(coin, amount + 1):
+                dp[i] = min(dp[i], dp[i - coin] + 1)
+        return dp[amount] if dp[amount] != float('inf') else -1
