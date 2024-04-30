@@ -13,3 +13,17 @@ def singleNumber(nums) -> int:
     for num in nums:
         result ^= num
     return result
+
+
+# WONDERFUL-SUBSTRING :
+def wonderfulSubstrings(word: str) -> int:
+    count = [0] * 1024
+    result, xor, count[xor] = 0, 0, 1
+    for char in word:
+        idx = ord(char) - ord('a')
+        xor ^= 1 << idx
+        result += count[xor]
+        for i in range(10):
+            result += count[xor ^ (1 << i)]
+        count[xor] += 1
+    return result
