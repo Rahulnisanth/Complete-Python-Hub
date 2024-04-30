@@ -85,3 +85,22 @@ def removeKdigits(num: str, k: int) -> str:
     result = ''.join(stack).lstrip('0')
 
     return result if result else '0'
+
+
+# DECODE THE GIVEN STRING :
+def decodeString(s: str) -> str:
+    stack = []
+    for ch in s:
+        if ch != ']':
+            stack.append(ch)
+        else:
+            result = ''
+            while stack[-1] != '[' :
+                result += stack.pop()
+            stack.pop()
+            n = ''
+            while len(stack) != 0 and stack[-1].isdigit():
+                n += stack.pop()
+            stack.append(result * int(n[::-1]))
+
+    return ''.join([word[::-1] for word in stack ])
