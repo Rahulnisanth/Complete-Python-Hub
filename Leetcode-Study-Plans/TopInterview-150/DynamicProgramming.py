@@ -54,3 +54,16 @@ def coinChange(coins, amount) -> int:
         for i in range(coin, amount + 1):
             dp[i] = min(dp[i], dp[i - coin] + 1)
     return dp[amount] if dp[amount] != float('inf') else -1
+
+
+# LENGTH OF THE LONGEST INCREASING SEQUENCE :
+def lengthOfLIS(nums) -> int:
+    if not nums:
+        return 0
+    else:
+        dp = [1] * len(nums)
+        for i in range(1, len(nums)):
+            for j in range(i):
+                if nums[i] > nums[j]:
+                    dp[i] = max(dp[i], dp[j] + 1)
+        return max(dp)

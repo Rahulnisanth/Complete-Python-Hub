@@ -292,3 +292,15 @@ def countSubarrays(nums, minK: int, maxK: int) -> int:
         result += max(0, min(leftIdx, rightIdx) - badIdx)
     
     return result
+
+
+# BOATS TO SAVE PEOPLE :
+def numRescueBoats(people, limit) -> int:
+    people.sort()
+    boats, start, end = 0, 0, len(people) - 1
+    while start <= end:
+        if people[start] + people[end] <= limit:
+            start += 1
+        end -= 1
+        boats += 1
+    return boats
