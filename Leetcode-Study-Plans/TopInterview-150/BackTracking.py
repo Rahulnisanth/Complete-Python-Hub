@@ -78,3 +78,20 @@ def dfs(board, i, j, word, word_idx): # Recursive[DFS] to analyze the adjacent l
             )
     board[i][j] = word[word_idx]
     return result
+
+
+# GENERATE PARENTHESIS :
+def generateParenthesis(n : int):
+    # Helper func [backtracking] :
+    def backtrack(combination, open, close):
+        if len(combination) == 2 * n:
+            result.append(combination)
+            return 
+        if open < n:
+            backtrack(combination + '(', open + 1, close)
+        if close < open:
+            backtrack(combination + ')', open, close + 1)
+    # Main drive :
+    result = []
+    backtrack('', 0, 0)
+    return result
