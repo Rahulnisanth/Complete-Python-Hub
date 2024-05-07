@@ -16,3 +16,23 @@ def reverseBetween(self, head, left: int, right: int):
     leftPrev.next = prev
 
     return dummy.next
+
+
+# DOUBLE THE NUMBER REPRESENTED AS LINKED-LIST :
+def doubleIt(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    stack = []
+    value = 0
+
+    while head:
+        stack.append(head.val)
+        head = head.next
+    
+    tail = None
+    while stack or value != 0 :
+        tail = ListNode(0, tail)
+        if stack:
+            value += stack.pop() * 2
+        tail.val = value % 10
+        value //= 10
+        
+    return tail
