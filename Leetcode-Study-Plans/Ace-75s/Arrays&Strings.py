@@ -175,3 +175,11 @@ def compareVersion(version1: str, version2: str) -> int:
         elif v1 < v2:
             return -1
     return 0
+
+
+# AREA OF THE LARGEST RECTANGLE IN GIVEN HISTOGRAM GRAPH :
+def largestRectangle(heights):
+    area = [0] * len(heights)
+    for i in range(len(heights) - 1):
+        area[i] = min(heights[i], heights[i + 1]) * 2
+    return max(area)
