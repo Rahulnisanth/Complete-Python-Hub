@@ -304,3 +304,26 @@ def numRescueBoats(people, limit) -> int:
         end -= 1
         boats += 1
     return boats
+
+
+# MAXIMIZE THE ARRAY TO UNIQUE MAXIMUM ELEMENT :
+def rotateArray(arr):
+    def rotation(array, start, end):
+        while start < end:
+            array[start], array[end] = array[end], array[start]
+            start += 1
+            end -= 1
+    idx, n = arr.index(max(arr)), len(arr) - 1
+    rotation(arr, 0, n)
+    rotation(arr, n - idx, n)
+    return arr
+def maximizeArray(arr, n):
+    arr = rotateArray(arr)
+    maxx = max(arr)
+    result = 0
+    for i in range(n):
+        result += arr[i] * (i + 1) + maxx
+        print(f"{arr[i]} * {i + 1} + {maxx}")
+    return result
+
+
