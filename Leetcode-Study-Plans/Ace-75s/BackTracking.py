@@ -25,3 +25,24 @@ def letterCombinations(digits: str):
     backtrack('', 0)
     return result
 
+
+# THE NUMBER OF BEAUTIFUL SUBSETS :
+from collections import defaultdict
+def beautifulSubsets(nums, k):
+    count = 0
+    def explore(index):
+        nonlocal count
+        if len(nums) == index:
+            count += 1
+            return
+        num = nums[index]
+        if not num - k in map and not num + k in map :
+            map[num] += k
+            explore(index + 1)
+            map[num] -= k
+            if map[num] == 0:
+                del map[num]
+        explore(index + 1)
+    map = defaultdict(int)
+    explore(0)
+    return count - 1
