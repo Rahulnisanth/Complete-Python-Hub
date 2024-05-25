@@ -99,3 +99,30 @@ def sumNumbers(self, root: Optional[TreeNode]) -> int:
             return dfs(node.left, placer) + dfs(node.right, placer)
     return dfs(root, 0)
 
+
+# ZIG-ZAG LEVEL ORDER TRAVERSAL :
+from collections import deque
+def zigzagLevelOrder(root):
+    if not root :
+        return []
+    result = []
+    queue = deque([root])
+    left_to_right = True
+    while queue:
+        level_size = len(queue)
+        current = deque()
+        for _ in range(level_size):
+            node = queue.popleft()
+            if left_to_right:
+                current.append(node.val)
+            else:
+                current.appendleft(node.val)
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+        result.append(list(current))
+        left_to_right = not left_to_right
+    return result
+
+            

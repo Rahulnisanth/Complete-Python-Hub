@@ -46,3 +46,19 @@ def beautifulSubsets(nums, k):
     map = defaultdict(int)
     explore(0)
     return count - 1
+
+
+# WORD BREAK - II :
+def wordBreak(self, s: str, wordDict ) :
+    def backtrack(s, start, current):
+        if len(s) == start:
+            result.append(" ".join(current))
+        for i in range(start, len(s)):
+            if s[start:i+1] in setter:
+                current.append(s[start:i+1])
+                backtrack(s, i + 1, current)
+                current.pop(-1)
+    result = []
+    setter = set(wordDict)
+    backtrack(s, 0, [])
+    return result
