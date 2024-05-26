@@ -26,3 +26,4 @@ def checkRecord(n: int) -> int:
         value_cache[day][absent][late] = total % MOD
         return value_cache[day][absent][late]
     return count(0, 0, 0)
+
