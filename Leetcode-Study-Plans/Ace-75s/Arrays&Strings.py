@@ -183,3 +183,16 @@ def largestRectangle(heights):
     for i in range(len(heights) - 1):
         area[i] = min(heights[i], heights[i + 1]) * 2
     return max(area)
+
+
+# SPECIAL ARRAY WITH X ELEMENTS >= X :
+def specialArray(nums) -> int:
+    nums.sort(reverse=True)
+    for x in range(1, len(nums) + 1):
+        count = 0
+        for num in nums:
+            if num >= x:
+                count += 1
+        if count == x:
+            return x
+    return -1
