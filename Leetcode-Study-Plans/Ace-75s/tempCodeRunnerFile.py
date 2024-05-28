@@ -1,11 +1,21 @@
-def numberRectangles(rectangles : list[list[int]]) -> int :
-    sideOfSquares = []
-    for i in range(len(rectangles)):
-        sideOfSquares.append(min(rectangles[i]))
+def equalSubstring(s,t,maxCost) -> int:
+    def helper(s1, s2):
+        return abs(ord(s1) - ord(s2))
+    idx, equalCount = 0, 0
+    while idx < len(s) and maxCost > 0:
+        print(f"{s[idx]} \t {t[idx]} \t {idx}")
+        if s[idx] != t[idx]:
+            cost = helper(s[idx], t[idx])
+            if cost <= maxCost:
+                maxCost -= cost
+                print(f"{maxCost} -= {cost}")
+                equalCount += 1
+        elif s[idx] == t[idx]:
+            equalCount += 1
+        idx += 1
+    return equalCount
 
-    maxNumberOfRectangles = 0
-    for i in range(len(rectangles)):
-        maxNumberOfRectangles += rectangles[i].count(max(sideOfSquares)) if min(rectangles[i]) == max(sideOfSquares) else 0
-    return maxNumberOfRectangles
 
-print(numberRectangles([[5,12],[3,5],[5,16],[20,5]]))
+print(equalSubstring("abcd","bcdf",3))
+print(equalSubstring("abcd","cdef",3))
+print(equalSubstring("abcd","acde",0))

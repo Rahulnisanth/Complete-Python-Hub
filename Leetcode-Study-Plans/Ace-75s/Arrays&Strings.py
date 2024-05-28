@@ -196,3 +196,29 @@ def specialArray(nums) -> int:
         if count == x:
             return x
     return -1
+
+
+# GET EQUAL SUBSTRINGS WITHIN GIVEN BUDGET :
+def equalSubstring(s,t,maxCost) -> int:
+    def helper(s1, s2):
+        return abs(ord(s1) - ord(s2))
+    array = []
+    for i in range(len(s)):
+        array[i] = helper(s[i], t[i])
+    
+    start, end, answer = 0, 0, 0
+    while start < len(s) and end < len(t):
+        cost += array[end]
+        if cost <= maxCost :
+            answer = max(answer, end - start)
+        else:
+            while cost > maxCost: 
+                cost -= array[start]
+        start += 1
+        end += 1
+    return answer
+
+
+
+
+
