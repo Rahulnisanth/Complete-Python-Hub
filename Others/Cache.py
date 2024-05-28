@@ -9,6 +9,8 @@ def calculateOddSum(nums) -> int:
         right -= 1
     return total
 
+
+# ENCODE DATA :
 n = int(input())
 mapper = {}
 for _ in range(n):
