@@ -23,3 +23,14 @@ def tackle(n1, n2):
     
 n1, n2 = list(map(int, input().split()))
 print(tackle(n1, n2))
+
+# IS SUM PRESENT IN ARRAY :
+def is_found(nums, k):
+    for i in range(len(nums)):
+        for j in range(i + 1):
+            if i != j and nums[i] + nums[j] == k: return f"index1: {j}\nindex2: {i}"
+    return "No two sum solution"
+
+nums = list(map(int, input().split()))
+k = int(input())
+print(is_found(nums, k))
