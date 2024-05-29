@@ -1,21 +1,17 @@
-def equalSubstring(s,t,maxCost) -> int:
-    def helper(s1, s2):
-        return abs(ord(s1) - ord(s2))
-    idx, equalCount = 0, 0
-    while idx < len(s) and maxCost > 0:
-        print(f"{s[idx]} \t {t[idx]} \t {idx}")
-        if s[idx] != t[idx]:
-            cost = helper(s[idx], t[idx])
-            if cost <= maxCost:
-                maxCost -= cost
-                print(f"{maxCost} -= {cost}")
-                equalCount += 1
-        elif s[idx] == t[idx]:
-            equalCount += 1
-        idx += 1
-    return equalCount
+# NUMBER OF STEPS TO REDUCE THE BINARY NUMBER TO 1 :
+def numSteps(s) -> int:
+    def helper(num, steps):
+        if num == 1:
+            return steps
+        if num % 2 != 0:
+            num += 1
+            return helper(num, steps + 1)
+        if num % 2 == 0:
+            num //= 2
+            return helper(num, steps + 1)
+    num = int(s, 2)
+    return helper(num, 0)
 
-
-print(equalSubstring("abcd","bcdf",3))
-print(equalSubstring("abcd","cdef",3))
-print(equalSubstring("abcd","acde",0))
+print(numSteps("1101"))
+print(numSteps("10"))
+print(numSteps("1"))

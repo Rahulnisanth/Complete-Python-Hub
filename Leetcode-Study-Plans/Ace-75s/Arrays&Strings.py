@@ -219,6 +219,16 @@ def equalSubstring(s,t,maxCost) -> int:
     return answer
 
 
+# NUMBER OF STEPS TO REDUCE THE BINARY NUMBER TO 1 :
+def numSteps(s) -> int:
+    def helper(num, steps):
+        if num == 1:
+            return steps
+        if num % 2 != 0:
+            return helper(num + 1, steps + 1)
+        if num % 2 == 0:
+            return helper(num // 2, steps + 1)
+    return helper(int(s, 2), 0)
 
 
 
