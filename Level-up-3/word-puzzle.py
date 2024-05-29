@@ -7,7 +7,7 @@ puzzle = [
 def solve_puzzle(word) -> bool:
     for i in range(len(puzzle)):
         for j in range(len(puzzle[i])):
-            # Traversing all the indices :
+            # Checking the first matched letter with the search_word :
             if(find_word(i, j, 0, word)): return True
     return False
 
