@@ -10,26 +10,16 @@ def calculateOddSum(nums) -> int:
     return total
 
 
-# ENCODE DATA :
-n = int(input())
-mapper = {}
-for _ in range(n):
-    count, num = list(map(int, input().split()))
-    if num in mapper:
-        mapper[num] += count
-    else:
-        mapper[num] = count
-
-maxFreq = -1
-minFreq = float('inf')
-maxNum = None
-minNum = None
-for k, v in mapper.items():
-    if v > maxFreq:
-        maxFreq = v
-        maxNum = k
-    if v < minFreq:
-        minFreq = v
-        minNum = k
-
-print(abs(maxNum - minNum))
+# BITWISE MANIPULATION :
+def tackle(n1, n2):
+    if bin(n1)[-1] == '1' and bin(n2)[-1] == '1':
+        n1 = n1 ^ n2
+        n2 = n1 ^ n2
+        n1 = n1 ^ n2
+    if bin(n1)[-1] == '0' and bin(n2)[-1] == '0':
+        n1 = n1 << 3
+        n2 = n2 << 3
+    return [n1, n2]
+    
+n1, n2 = list(map(int, input().split()))
+print(tackle(n1, n2))
