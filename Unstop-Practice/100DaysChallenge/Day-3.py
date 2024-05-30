@@ -57,6 +57,7 @@ b = input().strip()
 len1, len2 = len(a), len(b)
 ones, total = 0, 0
 diff = len2 - len1 + 1
+
 for i in range(diff):
     if b[i] == '1': ones += 1
 
