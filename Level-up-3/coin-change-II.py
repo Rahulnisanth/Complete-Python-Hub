@@ -4,23 +4,22 @@ def denominations(amount):
     dp[0] = 0
     coin_used = [-1] * (amount + 1)
 
-    for coin in notes:
-        for i in range(coin, amount + 1):
-            if dp[i - coin] + 1 < dp[i]:
-                dp[i] = dp[i - coin] + 1
-                coin_used[i] = coin
+    for note in notes:
+        for i in range(note, amount + 1):
+            dp[i] = min(dp[i], dp[i - note] + 1)
+            coin_used[i] = note
 
     if dp[amount] == float('inf'):
         return -1
-
+    print(coin_used)
     result = []
     current_amount = amount
     while current_amount > 0:
-        coin = coin_used[current_amount]
-        if coin == -1:
+        if note == -1:
             return -1  
-        result.append(coin)
-        current_amount -= coin
+        note = coin_used[current_amount]
+        result.append(note)
+        current_amount -= note
 
     return result
 

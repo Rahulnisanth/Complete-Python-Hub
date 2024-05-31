@@ -34,3 +34,23 @@ def is_found(nums, k):
 nums = list(map(int, input().split()))
 k = int(input())
 print(is_found(nums, k))
+
+
+def solvePuzzle(n):
+    def helper(dp, left, right):
+        if left >= right:
+            return 0
+        if dp[left][right] != 0:
+            return dp[left][right]
+        else:
+            result = float('inf') # max value:
+            for guess in range(left, right + 1):
+                temp = guess + max(helper(dp, guess + 1, right), helper(dp, left, guess - 1))
+                result = min(result, temp)
+        return result
+
+    dp = [[0] * (n+1)] * (n+1)
+    print(dp)
+    helper(dp, 0, len(dp))
+
+print(solvePuzzle(10))
