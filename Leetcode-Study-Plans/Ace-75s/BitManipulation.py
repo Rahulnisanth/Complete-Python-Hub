@@ -27,3 +27,18 @@ def wonderfulSubstrings(word: str) -> int:
             result += count[xor ^ (1 << i)]
         count[xor] += 1
     return result
+
+
+# SINGLE NUMBER III :
+def singleNumber(nums):
+    xor = 0
+    for num in nums:
+        xor ^= num
+    xor & -xor
+    result = [0, 0]
+    for num in nums:
+        if num & xor == 0:
+            result[0] ^= num
+        else:
+            result[1] ^= num
+    return result
