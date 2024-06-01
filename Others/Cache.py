@@ -54,3 +54,32 @@ def solvePuzzle(n):
     helper(dp, 0, len(dp))
 
 print(solvePuzzle(10))
+
+
+# ZIG-ZAG ROTATION OF STRINGS :
+def reverse(word, start, end):
+    while start < end:
+        word[start], word[end] = word[end], word[start]
+        start += 1
+        end -= 1
+def left_rotation(word, k):
+    n = len(word)
+    k %= n
+    reverse(word, 0, n - 1)
+    reverse(word, 0, n - k - 1)
+    reverse(word, n - k, n - 1)
+    return word
+def right_rotation(word, k):
+    n = len(word)
+    k %= n
+    reverse(word, 0, n - 1)
+    reverse(word, 0, k - 1)
+    reverse(word, k, n - 1)
+    return word  
+# Main stream of the program :
+n = int(input())
+for idx in range(n):
+    input_string = [letter for letter in input()]
+    k = int(input())
+    if idx % 2 == 0: print("".join(left_rotation(input_string, k)))
+    if idx % 2 != 0: print("".join(right_rotation(input_string, k)))
