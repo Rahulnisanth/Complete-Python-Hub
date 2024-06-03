@@ -14,7 +14,6 @@ def denomination_steps(coins, amount, n):
 
         return dp[n][amount]
     dp = [[-1 for _ in range(amount + 1)] for _ in range(n + 1)]
-    dp = [[-1] * (amount + 1)] * (n + 1)
     return count(dp, coins, amount, n)
 
 t = int(input())
