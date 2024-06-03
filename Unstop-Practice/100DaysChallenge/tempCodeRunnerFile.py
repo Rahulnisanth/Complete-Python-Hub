@@ -1,16 +1,12 @@
-def result(ops):
-    stack = []
-    for op in ops:
-        if op == 'C': 
-            if stack: stack.pop()
-        elif op == 'D': 
-            if stack: stack.append(stack[-1] * 2)
-        elif op == '+': 
-            if len(stack) >= 2: stack.append(stack[-1] + stack[-2])
-        else:
-            stack.append(int(op))
-    return sum(stack)
+def smallest_sequence_count(nums, n):
+    counts = [0] * n
+    for i in range(n):
+        count = 0
+        for j in range(n):
+            if nums[j] < nums[i]: count += 1
+        counts[i] = count
+    return counts
 
 n = int(input())
-ops = input().split()
-print(result(ops))
+nums = list(map(int, input().split()))
+print(*smallest_sequence_count(nums, n))
