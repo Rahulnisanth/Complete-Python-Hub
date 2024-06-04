@@ -1,5 +1,6 @@
 def count_shortest_subsequence(s, t, x, y, dp) -> int:
-    if x == 0 or y == 0: dp[x][y] = x + y
+    if x == 0 or y == 0: 
+        dp[x][y] = x + y
     if dp[x][y] == 0:
         if s[x - 1] == t[y - 1]:
             dp[x][y] = count_shortest_subsequence(s, t, x - 1, y - 1, dp) + 1

@@ -1,17 +1,16 @@
-def find_minimum_pairs(pairs) -> int:
-    count, current_max = 0, float('-inf')
-    for start, end in sorted(pairs, key=lambda x:x[1]): # Sorting the pairs with end x[1]... 
-        if current_max < start:
-            current_max = end
-            count += 1
-    return count
+def shifter(num):
+    left4sshift = num & 0b11110000
+    print(left4sshift)
+    print(bin(left4sshift)[2:])
+    right4shift = num & 0b00001111
+    print(right4shift)
+    print(bin(right4shift)[2:])
+    left4sshift = left4sshift >> 4
+    print(left4sshift)
+    print(bin(left4sshift)[2:])
+    right4shift = right4shift << 4
+    print(right4shift)
+    print(bin(right4shift)[2:])
+    return left4sshift + right4shift
 
-# Input stream :
-t = int(input())
-for _ in range(t):
-    n = int(input())
-    dump = list(map(int, input().split()))
-    pairs = []
-    for i in range(0, n*2, 2):
-        pairs.append((dump[i], dump[i + 1]))
-    print(find_minimum_pairs(pairs))
+print(shifter(52))
