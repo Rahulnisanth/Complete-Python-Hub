@@ -83,3 +83,18 @@ for idx in range(n):
     k = int(input())
     if idx % 2 == 0: print("".join(left_rotation(input_string, k)))
     if idx % 2 != 0: print("".join(right_rotation(input_string, k)))
+
+
+#  GUESSING GAME :
+def guess_game(start, end, dp):
+    if start < end:
+        min_cost = float('inf')
+        for guess in range(start, end + 1):
+                cost = guess + max(guess_game(start, guess - 1, dp), guess_game(guess + 1, end, dp))
+                min_cost = min(min_cost, cost)
+    return min_cost
+    else: return 0
+# Input range:
+n = int(input())
+dp = [[0] * (n + 1) for _ in range(n + 1)]
+print(guess_game(1, n, dp))
