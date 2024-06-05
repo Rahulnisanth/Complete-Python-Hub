@@ -42,3 +42,12 @@ def singleNumber(nums):
         else:
             result[1] ^= num
     return result
+
+
+# FIND THE COMMON CHARACTERS :
+from typing import Counter
+def commonChars(words):
+    min_freq = Counter(words[0])
+    for word in words:
+        min_freq &= Counter(word)
+    return list(min_freq.elements())

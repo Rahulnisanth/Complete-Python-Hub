@@ -92,9 +92,26 @@ def guess_game(start, end, dp):
         for guess in range(start, end + 1):
                 cost = guess + max(guess_game(start, guess - 1, dp), guess_game(guess + 1, end, dp))
                 min_cost = min(min_cost, cost)
-    return min_cost
+        return min_cost
     else: return 0
 # Input range:
 n = int(input())
 dp = [[0] * (n + 1) for _ in range(n + 1)]
 print(guess_game(1, n, dp))
+
+
+# FINDING THE COMMON CHARACTERS :
+def check_letter_presence(letter, words):
+    for word in words:
+        if letter not in word:
+            return False
+    return True
+
+words = input().split()
+result = ''
+for letter in words[0]:
+    if check_letter_presence(letter, words):
+        result += letter
+print(result)
+
+
