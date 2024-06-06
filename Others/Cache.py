@@ -91,3 +91,16 @@ def maxSum(array, n):
 
 arr = list(map(int, input().split()))
 print(maxSum(arr, len(arr)))
+
+
+# RECURRENCE SEQUENCE AFTER DECIMALS :
+num, dnm = list(map(int, input().split()))
+rem = num % dnm
+map = {}
+result = ''
+while rem != 0 and rem not in map:
+    map[rem] = len(result)
+    rem *= 10
+    result += str(rem // dnm)
+    rem %= dnm
+print(result[map[rem]:] if rem != 0 else '')
