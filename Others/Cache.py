@@ -36,26 +36,6 @@ k = int(input())
 print(is_found(nums, k))
 
 
-def solvePuzzle(n):
-    def helper(dp, left, right):
-        if left >= right:
-            return 0
-        if dp[left][right] != 0:
-            return dp[left][right]
-        else:
-            result = float('inf') # max value:
-            for guess in range(left, right + 1):
-                temp = guess + max(helper(dp, guess + 1, right), helper(dp, left, guess - 1))
-                result = min(result, temp)
-        return result
-
-    dp = [[0] * (n+1)] * (n+1)
-    print(dp)
-    helper(dp, 0, len(dp))
-
-print(solvePuzzle(10))
-
-
 # ZIG-ZAG ROTATION OF STRINGS :
 def reverse(word, start, end):
     while start < end:
@@ -100,18 +80,14 @@ dp = [[0] * (n + 1) for _ in range(n + 1)]
 print(guess_game(1, n, dp))
 
 
-# FINDING THE COMMON CHARACTERS :
-def check_letter_presence(letter, words):
-    for word in words:
-        if letter not in word:
-            return False
-    return True
+# MAXIMUM SUM OF THE SUB-ARRAY :
+def maxSum(array, n):
+    dp = [float('-inf')] * (n + 1)
+    dp[0], temp = array[0], 0
+    for i in range(1, n + 1):
+        temp = temp + array[i - 1]
+        dp[i] = max(dp[i], temp)
+    return dp[n]
 
-words = input().split()
-result = ''
-for letter in words[0]:
-    if check_letter_presence(letter, words):
-        result += letter
-print(result)
-
-
+arr = list(map(int, input().split()))
+print(maxSum(arr, len(arr)))
