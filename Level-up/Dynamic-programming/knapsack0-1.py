@@ -20,3 +20,4 @@ W = int(input())
 n = len(profits)
 dp = [[-1] * (W + 1) for _ in range(n)]
 print(knapsack(n - 1, W, dp))
+

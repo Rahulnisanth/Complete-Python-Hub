@@ -14,7 +14,7 @@ def target_sum_make_combinations(nums, target):
             helper(idx + 1, remain - nums[i])
             dump.pop()
     helper(0, target)
-    return result if len(result) > 0 else "Empty"
+    return result
 
 # Input stream :
 test = int(input())
@@ -22,4 +22,11 @@ for _ in range(test):
     n = int(input())
     nums = list(map(int, input().split()))
     target = int(input())
-    print(target_sum_make_combinations(nums, target))
+    answer = target_sum_make_combinations(nums, target)
+    if len(answer) > 0:
+        for i in range(len(answer)):
+            print("(", end='')
+            for j in range(len(answer[i])):
+                print(f" {answer[i][j]}", end='')
+            print(")", end='')
+    else: print("Empty")
