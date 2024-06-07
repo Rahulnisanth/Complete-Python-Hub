@@ -11,12 +11,12 @@ def denominations(amount):
 
     if dp[amount] == float('inf'):
         return -1
-    print(coin_used)
+    
     result = []
     current_amount = amount
     while current_amount > 0:
         if note == -1:
-            return -1  
+            return -1 
         note = coin_used[current_amount]
         result.append(note)
         current_amount -= note

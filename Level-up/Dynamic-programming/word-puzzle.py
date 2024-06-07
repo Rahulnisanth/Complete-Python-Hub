@@ -20,7 +20,10 @@ def find_word(i, j, idx, search_word) -> bool:
     if(idx == len(search_word) - 1): return True
     # Mark as visited :
     puzzle[i][j] = '#'
-    found = find_word(i, j + 1, idx + 1, search_word) or find_word(i, j - 1, idx + 1, search_word) or find_word(i + 1, j, idx + 1, search_word) or find_word(i - 1, j, idx + 1, search_word) 
+    found = find_word(i, j + 1, idx + 1, search_word) or \
+            find_word(i, j - 1, idx + 1, search_word) or \
+            find_word(i + 1, j, idx + 1, search_word) or \
+            find_word(i - 1, j, idx + 1, search_word) 
     # Un-mark the letter :
     puzzle[i][j] = search_word[idx]
     return found

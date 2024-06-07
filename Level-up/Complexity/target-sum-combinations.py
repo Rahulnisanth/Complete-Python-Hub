@@ -6,7 +6,7 @@ def target_sum_make_combinations(nums, target):
             dump.sort()
             if dump[:] not in result and sum(dump[:]) == target: 
                 result.append(dump[:])
-            return 
+            return
         for i in range(idx, len(nums)):
             if i > idx and nums[i] == nums[i - 1]: continue
             if nums[i] > remain: break
