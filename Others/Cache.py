@@ -104,3 +104,15 @@ while rem != 0 and rem not in map:
     result += str(rem // dnm)
     rem %= dnm
 print(result[map[rem]:] if rem != 0 else '')
+
+def checkSubarraySum(nums, k):
+    if not nums: return False
+    if k < 0: return False
+    cummulative_sum = nums[0] + nums[1]
+    for i in range(2, len(nums)):
+        cummulative_sum += nums[i]
+        if cummulative_sum % k == 0:
+            return True
+    return False
+print(checkSubarraySum([23,2,6,4,7], 6))
+print(checkSubarraySum([23,2,6,4,7], 13))
