@@ -118,6 +118,19 @@ print(checkSubarraySum([23,2,6,4,7], 6))
 print(checkSubarraySum([23,2,6,4,7], 13))
 
 
+try:
+    first_array = list(map(int, input().replace("{","").replace("}","").split(", ")))
+    second_array = list(map(int, input().replace("{","").replace("}","").split(", ")))
+    if first_array and second_array:
+        _count1 = sum(num & 1 for num in first_array)
+        _count2 = sum(num & 1 for num in second_array)
+        _total = _count1 * _count2
+        if _total != 5001: print(_total)
+        else: print(_total - 1)
+
+except ValueError as e:
+    print('')
+
 
 
 
