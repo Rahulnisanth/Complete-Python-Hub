@@ -116,3 +116,9 @@ def checkSubarraySum(nums, k):
     return False
 print(checkSubarraySum([23,2,6,4,7], 6))
 print(checkSubarraySum([23,2,6,4,7], 13))
+
+
+
+
+
+
