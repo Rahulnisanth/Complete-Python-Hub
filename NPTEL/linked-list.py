@@ -21,7 +21,6 @@ class Node:
             self.value = data
         else:
             new_node = Node(data)
-            # Exchange the nodes of self & newNode :
             (self.value, new_node.value) = (new_node.value, self.value)
             (self.next, new_node.next) = (new_node.next, self.next)
 
@@ -42,10 +41,16 @@ class Node:
     def print_list(self):
         lst = []
         if self.value is None:
-            return lst
+            print([])
         temp = self
         while temp is not None:
             lst.append(temp.value)
             temp = temp.next
-        return lst
+        print(lst)
+
+node = Node()
+list = [1,2,3,4,5]
+for num in list:
+    node.append(num)
+node.print_list()
 

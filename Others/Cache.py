@@ -120,33 +120,6 @@ print(checkSubarraySum([23,2,6,4,7], 13))
 
 
 
-# Backtracker :
-def island_count(x, y, grid):
-    if 0 <= x < len(grid) and 0 <= y < len(grid[0]) and grid[x][y] == 1:
-        grid[x][y] = 0 
-        sol[x][y] = '#'
-        island_count(x + 1, y, grid)
-        island_count(x, y + 1, grid)
-        island_count(x - 1, y, grid)
-        island_count(x, y - 1, grid)
-
-# Main stream :
-grid = [[1,1,1,0,0],
-        [1,1,0,1,0],
-        [0,0,0,0,1]]
-sol = [[-1]*(len(grid[0])) for _ in range(len(grid))]
-total_count = 0
-for i in range(len(grid)):
-    for j in range(len(grid[0])):
-        if grid[i][j] == 1:
-            total_count += 1
-            island_count(i, j, grid)
-
-print(total_count)
-for row in sol:
-    print(row)
-
-
 
 
 
