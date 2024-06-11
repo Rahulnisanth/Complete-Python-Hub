@@ -1,23 +1,24 @@
-def knapsack(idx, W, dp) -> int:
-    # Base case for single element :
-    if idx == 0: 
-        if weights[idx] <= W: dp[idx][W] = profits[idx]
-        else: dp[idx][W] = 0
-    # Memos :
-    if dp[idx][W] != -1: return dp[idx][W]
-    # Not - take :
-    un_take = 0 + knapsack(idx - 1, W, dp)
-    # Take :
-    take = float("-inf")
-    if(weights[idx] <= W):
-        take = profits[idx] + knapsack(idx - 1, W - weights[idx], dp)
-    dp[idx][W] =  max(take, un_take)
-    return dp[idx][W]
+def knapsack(profits, weights, W):
+    n = len(profits)
+    dp = [[-1] * (W + 1) for _ in range(n + 1)]
+    for i in range(n + 1):
+        for j in range(W + 1):
+            # base case:
+            if i == 0 or j == 0:
+                dp[i][j] = 0
+            # Edge case
+            elif j >= weights[i - 1]:
+                not_take = dp[i - 1][j]
+                take = profits[i - 1] + dp[i - 1][j - weights[i - 1]]
+                dp[i][j] = max(take, not_take)
+            # Last case
+            else:
+                dp[i][j] = dp[i - 1][j]
+    # result
+    return dp[n][W]
+
 
 profits = list(map(int, input().replace('{',"").replace('}','').split(',')))
 weights = list(map(int, input().replace('{',"").replace('}','').split(',')))
 W = int(input())
-n = len(profits)
-dp = [[-1] * (W + 1) for _ in range(n)]
-print(knapsack(n - 1, W, dp))
-
+print(knapsack(profits, weights, W))
