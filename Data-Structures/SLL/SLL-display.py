@@ -17,12 +17,21 @@ class LinkedList:
                 current = current.next
             current.next = node
     
+    def reverse(self):
+        prev = None
+        current = self.head
+        while current:
+            past = current.next
+            current.next = prev
+            prev = current
+            current = past
+            print(prev.data)
+
     def display(self):
         current = self.head
         while current:
             print(current.val, end=' ')
             current = current.next
-
 
 # Input stream :
 n = int(input())
@@ -32,5 +41,6 @@ sll = LinkedList()
 for num in dump:
     sll.insert(num)
 # Displaying :
+sll.reverse()
 sll.display()
 

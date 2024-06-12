@@ -120,7 +120,17 @@ print(checkSubarraySum([23,2,6,4,7], 13))
 
 
 
+def sortColors(nums):
+    '''
+    Do not return anything modify the original array
+    '''
+    red = nums.count(0) 
+    white = nums.count(1)
+    blue = nums.count(2)
+    nums[:red] = [0] * red
+    nums[red:red+white] = [1] * white
+    nums[white:white+blue] = [2] * blue
 
-
-
-
+nums = [2,0,1]
+sortColors(nums)
+print(nums)
