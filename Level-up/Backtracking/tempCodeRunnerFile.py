@@ -1,2 +1,2 @@
 
-# Input Stream :
+    if result[i][0] != 9:

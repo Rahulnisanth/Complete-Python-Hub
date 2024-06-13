@@ -1,12 +1,15 @@
 # Back-tracker :
 def backtrack(i, j, grid):
     if 0 <= i < len(grid) and 0 <= j < len(grid[0]) and grid[i][j] == 1:
-        grid[i][j] = 0 
-        solution[i][j] = "#"
+        grid[i][j] = 0
+        solution[i][j] = 3
         backtrack(i + 1, j, grid) # Down
         backtrack(i, j + 1, grid) # Right
         backtrack(i - 1, j, grid) # Up
         backtrack(i, j - 1, grid) # Left
+        backtrack(i + 1, j + 1, grid) # right diagonal 
+        backtrack(i - 1, j - 1, grid) # left diagonal 
+    return 
 
 # Traversing each island :
 def find_island_count(grid):
@@ -21,7 +24,6 @@ def find_island_count(grid):
 # Input Stream :
 row, col = list(map(int, input().split()))
 grid = [list(map(int, input().split())) for _ in range(row)]
-
 # Solution grid :
 solution = [[0] * (len(grid[0])) for _ in range(len(grid))]
 # Solution :
