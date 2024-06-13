@@ -134,3 +134,5 @@ def sortColors(nums):
 nums = [2,0,1]
 sortColors(nums)
 print(nums)
+
+
