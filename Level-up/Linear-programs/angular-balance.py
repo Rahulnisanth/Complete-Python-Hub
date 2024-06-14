@@ -24,3 +24,5 @@ for _ in range(m):
 # Core drive
 for i in range(n):
     print(is_balanced(strings[i], chances[i]))
+
+
