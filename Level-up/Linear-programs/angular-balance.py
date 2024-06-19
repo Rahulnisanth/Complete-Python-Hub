@@ -1,13 +1,15 @@
 def is_balanced(string, chance) -> int:
-    string = string[::-1]
     stack = []
+    needed_chance = 0
     for char in string:
-        if char == '>': 
+        if char == '<': 
             stack.append(char)
-        elif char == '<':
-            if stack and stack[-1] == '>':
+        elif char == '>':
+            if stack and stack[-1] == '<':
                 stack.pop()
-    return 1 if len(stack) <= chance else 0
+            else:
+                needed_chance += 1
+    return 1 if needed_chance <= chance else 0
 
 # Storage fields
 strings = []
