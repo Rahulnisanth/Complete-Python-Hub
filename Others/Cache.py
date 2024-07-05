@@ -136,3 +136,18 @@ sortColors(nums)
 print(nums)
 
 
+# Making good function :
+def make_good(buffer):
+    if 0 < len(buffer) <= 26:
+        return -1
+    buffer = list(buffer)
+    for i in range(len(buffer)):
+        if buffer[i].isupper(): 
+            return -1   
+        elif buffer[i] == '?' and i > 0: 
+            buffer[i] = chr(ord(buffer[i - 1]) + 1) 
+    return ''.join(buffer)
+
+# Input stream :
+buffer = input()
+print(make_good(buffer))

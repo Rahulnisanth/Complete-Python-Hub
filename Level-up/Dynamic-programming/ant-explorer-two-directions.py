@@ -2,7 +2,8 @@ def longest_path_count(n, grid) -> int:
     def is_valid(x, y):
         return 0 <= x < n and 0 <= y < n
     def helper(x, y):
-        if dp[x][y] != -1: return dp[x][y]
+        if dp[x][y] != -1: 
+            return dp[x][y]
         temp_max = 1
         directions = [(-1, 0), (0, -1)]
         for i, j in directions:
