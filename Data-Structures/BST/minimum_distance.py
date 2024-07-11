@@ -8,6 +8,7 @@ class BinarySearchTree:
     def __init__(self):
         self.root = None
     
+
     def insert(self, node, val):
         if not node:
             return Node(val)
@@ -20,10 +21,10 @@ class BinarySearchTree:
     
     def find_common_ancestor(self, node, n1, n2):
         if not node:
-            return None
-        if node.data > n1 and node.data > n2:
+            return 
+        if n1 < node.data and n2 < node.data:
             return self.find_common_ancestor(node.left, n1, n2)
-        if node.data < n1 and node.data < n2:
+        if n2 > node.data and n1 > node.data:
             return self.find_common_ancestor(node.right, n1, n2)
         return node
 
@@ -35,15 +36,8 @@ class BinarySearchTree:
             return 0
         if key < node.data:
             return 1 + self.measure_distance(node.left, key)
-        return 1 + self.measure_distance(node.right, key)
-
-
-    def display(self, node):
-        if not node:
-            return 
-        self.display(node.left)
-        print(node.data, end=' ')
-        self.display(node.right)
+        else:
+            return 1 + self.measure_distance(node.right, key)
 
 
 # Main drive :
