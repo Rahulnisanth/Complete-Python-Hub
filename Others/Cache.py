@@ -136,18 +136,35 @@ sortColors(nums)
 print(nums)
 
 
-# Making good function :
-def make_good(buffer):
-    if 0 < len(buffer) <= 26:
-        return -1
-    buffer = list(buffer)
-    for i in range(len(buffer)):
-        if buffer[i].isupper(): 
-            return -1   
-        elif buffer[i] == '?' and i > 0: 
-            buffer[i] = chr(ord(buffer[i - 1]) + 1) 
-    return ''.join(buffer)
+# Python3 implementation of the approach 
+def valid(cnt): 
+	for i in range(0, 26): 
+		if cnt[i] >= 2: 
+			return False
+	return True
+
+
+def getGoodString(s, n): 
+	if n < 26:
+		return "-1"
+	for i in range(25, n): 
+		cnt = [0] * 26
+		for j in range(i, i - 26, -1): 
+			if s[j] != '?':
+				cnt[ord(s[j]) - ord('a')] += 1
+		if valid(cnt): 
+			cur = 0
+			while cur < 26 and cnt[cur] > 0: 
+				cur += 1
+			for j in range(i - 25, i + 1): 
+				if s[j] == '?':
+					s[j] = chr(cur + ord('a')) 
+					cur += 1
+					while cur < 26 and cnt[cur] > 0:
+						cur += 1
+			return ''.join(s) 
+	return "-1"
 
 # Input stream :
 buffer = input()
-print(make_good(buffer))
+print(getGoodString(buffer))
