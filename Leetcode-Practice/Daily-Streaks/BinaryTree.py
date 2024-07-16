@@ -22,3 +22,31 @@ def createBinaryTree(descriptions):
     for parent, child, isLeft in descriptions:
         if parent not in children:
             return nodes[parent]
+
+
+# STEP-BY-STEP DIRECTIONS FROM ONE NODE TO ANOTHER :
+'''
+You are given the root of a binary tree with n nodes. Each node is uniquely assigned a value from 1 to n. You are also given an integer startValue representing the value of the start node s, and a different integer destValue representing the value of the destination node t.
+Find the shortest path starting from node s and ending at node t. Generate step-by-step directions of such path as a string consisting of only the uppercase letters 'L', 'R', and 'U'. Each letter indicates a specific direction:
+'L' means to go from a node to its left child node.
+'R' means to go from a node to its right child node.
+'U' means to go from a node to its parent node.
+Return the step-by-step directions of the shortest path from node s to node t.
+'''
+def getDirections(root, startValue: int, destValue: int) -> str:
+    def find_path(node, key, path):
+        if node.val == key:
+            return True
+        if node.left and find_path(node.left, key, path):
+            path.append('L')
+        elif node.right and find_path(node.right, key, path):
+            path.append('R')
+        return path
+    # Main drive :
+    start, dest = [], []
+    find_path(root, startValue, start)
+    find_path(root, destValue, dest)
+    while len(start) and len(dest) and start[-1] == dest[-1]:
+        start.pop()
+        dest.pop()
+    return ''.join("U" * len(start)) + "".join(dest[::-1])
