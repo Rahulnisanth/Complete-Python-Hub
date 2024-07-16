@@ -52,3 +52,21 @@ def minimumTotal(triangle) -> int:
             else:
                 dp[i][j] = triangle[i][j] + min(dp[i + 1][j], dp[i + 1][j + 1])
     return dp[0][0]
+
+
+# MINIMUM FALLING PATH SUM IN 2D GRID :
+def minFallingPathSum(matrix) -> int:
+    n, m = len(matrix), len(matrix[0])
+    for i in range(n):
+        for j in range(m):
+            if i > 0:
+                # Leftmost:
+                if j == 0:
+                    matrix[i][j] += min(matrix[i - 1][j], matrix[i - 1][j + 1])
+                # Middle:
+                if j - 1 >= 0 and j + 1 < m:
+                    matrix[i][j] += min(matrix[i - 1][j - 1], matrix[i - 1][j], matrix[i - 1][j + 1])
+                # Rightmost:
+                if j == m - 1:
+                    matrix[i][j] += min(matrix[i - 1][j], matrix[i - 1][j - 1])
+    return min(matrix[n - 1])
