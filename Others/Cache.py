@@ -168,3 +168,23 @@ def getGoodString(s, n):
 # Input stream :
 buffer = input()
 print(getGoodString(buffer))
+
+
+def validate_passkey(buffer) -> str:
+    if len(buffer) < 8:
+        return "Your Password is Not Strong"
+    spl_count = num_count = upper_count = lower_count = 0
+    for ch in buffer:
+        if ch.isdigit(): num_count += 1
+        if ch.isalpha() and ch.islower(): lower_count += 1
+        if ch.isalpha() and ch.isupper(): upper_count += 1
+        else: spl_count += 1
+    return "Your Password is Strong" if spl_count >= 1 and\
+                                        num_count >= 1 and\
+                                        upper_count >= 1 and\
+                                        lower_count >= 1 \
+        else "Your Password is Not Strong"
+
+# Input :
+buffer = input()
+print(validate_passkey(buffer))
