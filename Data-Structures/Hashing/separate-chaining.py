@@ -1,4 +1,4 @@
-class QuadraticProbingHashTable:
+class SeparateChainingHashTable:
     def __init__(self, size):
         self.size = size
         self.hash_table = [None] * size
@@ -22,7 +22,7 @@ class QuadraticProbingHashTable:
 # Input Stream :
 N = int(input())
 if N > 0:
-    hash_table = QuadraticProbingHashTable(N)
+    hash_table = SeparateChainingHashTable(N)
     array = list(map(int, input().split()))
     for key in array:
         hash_table.insert(key)
