@@ -50,3 +50,25 @@ def getDirections(root, startValue: int, destValue: int) -> str:
         start.pop()
         dest.pop()
     return ''.join("U" * len(start)) + "".join(dest[::-1])
+
+
+# DELETE NODES AND RETURN THE FOREST :
+'''
+Given the root of a binary tree, each node in the tree has a distinct value.
+After deleting all nodes with a value in to_delete, we are left with a forest (a disjoint union of trees).
+Return the roots of the trees in the remaining forest. You may return the result in any order.
+'''
+def delNodes(root, to_delete):
+    to_delete = set(to_delete)
+    result = []
+    def helper(node, is_root):
+        if not node: 
+            return None
+        is_deleted = node.val in to_delete
+        if is_root and not is_deleted:
+            result.append(node)
+        node.left = helper(node.left, is_deleted)
+        node.right = helper(node.right, is_deleted)
+        return None if is_deleted else node
+    helper(root, True)
+    return result
