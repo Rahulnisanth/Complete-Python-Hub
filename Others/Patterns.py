@@ -1,5 +1,4 @@
 '''
-Cube Number Pattern : N = 4 >>>
 4444444
 4333334
 4322234
@@ -18,7 +17,6 @@ def print_cube_pattern(N):
 
 
 '''
-Triangular Number Pattern : N = 3 >>>
 1 
 2 3
 4 5 6
@@ -43,7 +41,6 @@ def print_triangle_pattern(N):
 
 
 '''
-X Star Pattern : N = 3 >>>
 *   *
  * *
   *
@@ -66,3 +63,72 @@ def print_X_pattern(N):
                 print(' ', end='')
         print()
 
+
+'''
+0 1 2 3 
+4 5 6 
+7 8 
+9
+9
+8 7
+6 5 4
+3 2 1 0
+'''
+def print_sandbox_pattern(N):
+    count = 0
+    for i in range(N - 1, -1, -1):
+        for j in range(i + 1):
+            print(count, end=' ')
+            count += 1
+        print('')
+    count -= 1
+    for i in range(N):
+        for j in range(i + 1):
+            print(count, end=' ')
+            count -= 1
+        print(' ')
+
+
+'''
+* * * * * 
+ * * * * 
+  * * * 
+   * * 
+    * 
+    * 
+   * * 
+  * * * 
+ * * * * 
+* * * * * 
+'''
+def print_sandbox_pattern(N):
+    for i in range(N):
+        for j in range(i):
+            print(" ", end="")
+        for j in range(N - i):
+            print("* ", end="")
+        print()
+    for i in range(N):
+        for j in range(N - i - 1):
+            print(" ", end="")
+        for j in range(i + 1):
+            print("* ", end="")
+        print()
+
+
+'''
+1 b c d
+e 6 g h
+i j 11 l
+m n o 16
+'''
+def print_cubic_num_alpha_pattern(n):
+    flag = 1
+    for i in range(n):
+        for j in range(n):
+            if i == j:
+                print(flag, end=" ")
+            else:
+                print(chr(ord('a') + flag - 1), end=" ")
+            flag += 1
+        print()
