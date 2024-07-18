@@ -1,23 +1,26 @@
 class SeparateChainingHashTable:
     def __init__(self, size):
         self.size = size
-        self.hash_table = [None] * size
+        self.hash_table = [[] for _ in range(size)]
 
     def hash(self, key):
         return key % self.size
 
     def insert(self, key):
-        index = self.hash(key)
-        i = 0
-        while self.hash_table[(index + i*i) % self.size] is not None:
-            i += 1
-            if i == self.size:
-                return 'Error!!'
-        self.hash_table[(index + i*i) % self.size] = key
+        idx = self.hash(key)
+        self.hash_table[idx].append(key)
 
     def display(self):
-        for i, key in enumerate(self.hash_table):
-            print(f"index {i} value = {key}")
+        for i, values in enumerate(self.table):
+            if values:
+                print(f"at index {i}")
+                for key in values:
+                    print(f"{key}->", end='')
+                print()
+            else:
+                print(f"at index {i}")
+                print("No Hash Entry")
+
 
 # Input Stream :
 N = int(input())
