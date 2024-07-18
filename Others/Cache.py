@@ -188,3 +188,5 @@ def validate_passkey(buffer) -> str:
 # Input :
 buffer = input()
 print(validate_passkey(buffer))
+
+
