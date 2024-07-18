@@ -190,3 +190,4 @@ buffer = input()
 print(validate_passkey(buffer))
 
 
+
