@@ -23,7 +23,14 @@ def longestPalindrome(s: str) -> str:
                         result = s[i : maxLen]
     return result
 
-# Tester :
-print(longestPalindrome("bab"))
-print(longestPalindrome("aabaa"))
-print(longestPalindrome("babad"))
+
+# WORD BREAK :
+def wordBreak(s: str, wordDict) -> bool:
+    dp = [False] * (len(s) + 1)
+    dp[0] = True
+    for i in range(1, len(s) + 1):
+        for j in range(i):
+            if dp[j] and s[j:i] in wordDict:
+                dp[i] = True
+                break
+    return dp[-1]
