@@ -191,3 +191,27 @@ print(validate_passkey(buffer))
 
 
 
+def countIslands(grid):
+    def is_valid(x, y):
+        return 0 <= x < len(grid) and 0 <= y < len(grid[0])
+    
+    def mark_islands(i, j):
+        if is_valid(i, j) and grid[i][j] == "1":
+            grid[i][j] = "0"
+            mark_islands(i + 1, j)
+            mark_islands(i - 1, j)
+            mark_islands(i, j + 1)
+            mark_islands(i, j - 1)
+
+    count = 0
+    for i in range(len(grid)):
+        for j in range(len(grid[0])):
+            if grid[i][j] == "1":
+                count += 1
+                mark_islands(i, j)
+    return count
+
+
+# Input drive :
+grid = eval(input())
+print(countIslands(grid))
