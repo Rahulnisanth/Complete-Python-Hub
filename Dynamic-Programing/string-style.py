@@ -34,3 +34,16 @@ def wordBreak(s: str, wordDict) -> bool:
                 dp[i] = True
                 break
     return dp[-1]
+
+
+# LONGEST PALINDROMIC SUBSEQUENCE :
+def longestPalindromicSubSequence(S) -> int:
+    R = S[::-1]
+    dp = [[0] * (len(R) + 1) for _ in range(len(S) + 1)]
+    for i in range(1, len(S) + 1):
+        for j in range(1, len(R) + 1):
+            if S[i - 1] == R[j - 1]:
+                dp[i][j] = 1 + dp[i - 1][j - 1]
+            else:
+                dp[i][j] = max(dp[i][j - 1], dp[i - 1][j])
+    return dp[-1][-1]
