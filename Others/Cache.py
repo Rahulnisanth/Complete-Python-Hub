@@ -215,3 +215,33 @@ def countIslands(grid):
 # Input drive :
 grid = eval(input())
 print(countIslands(grid))
+
+
+
+
+def longest_consecutive_sequence(nums):
+    nums = set(nums)
+    ans = 0
+    mapper = {}
+
+    for num in nums:
+        if num - 1 not in nums:
+            temp = num
+            current_length = 1
+            while temp + 1 in nums:
+                temp += 1
+                current_length += 1
+            if current_length in mapper:
+                mapper[current_length] += 1
+            else:
+                mapper[current_length] = 1
+            ans = max(ans, current_length)
+
+    if ans in mapper and mapper[ans] > 1:
+        return 0
+    else:
+        return ans
+
+# Sample inputs
+array = list(map(int, input().split()))
+print(longest_consecutive_sequence(array))
