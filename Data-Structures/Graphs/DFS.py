@@ -1,25 +1,51 @@
 from collections import defaultdict
 
 def dfs(node_count, edges):
-    # creating graph :
     graph = defaultdict(list)
     for u, v in edges:
         graph[u].append(v)
-    # Sorting the edges :
+
     for node in graph:
         graph[node].sort()
-    # initializing starters :
-    start_node = 0
+
     visited = set()
     result = []
-    # traversing in dfs -->>
-    # [visiting all the neighbor nodes at once using recursion DS at the time of visiting a node] :
     def helper(node):
-        if node not in visited:
-            result.append(node)
-            visited.add(node)
-            for neighbor in graph[node]:
-                if neighbor not in visited:
-                    helper(neighbor)
-    helper(start_node)
+        result.append(node)
+        visited.add(node)
+        for neighbor in graph[node]:
+            if neighbor not in visited:
+                helper(neighbor)
+    helper(0)
     return result
+
+
+# DETECT CYCLE IN THE GRAPH :
+def helper(array, nodes):
+    graph = defaultdict(list)
+    for u,v in array:
+        graph[u].append(v)
+    
+    # Core cycle detection function :
+    def detect_cycle(node, visited, stack):
+        visited.add(node)
+        stack.add(node)
+        for neighbor in graph[node]:
+            if neighbor not in visited:
+                if detect_cycle(neighbor, visited, stack):
+                    return True
+            elif neighbor in stack:
+                return True
+        stack.remove(node)
+        return False
+
+    visited = set()
+    stack = set()
+    for node in range(nodes):
+        if node not in visited:
+            if detect_cycle(node, visited, stack):
+                return "true"
+    return "false"
+
+
+
