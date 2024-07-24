@@ -132,3 +132,38 @@ def print_cubic_num_alpha_pattern(n):
                 print(chr(ord('a') + flag - 1), end=" ")
             flag += 1
         print()
+
+
+'''
+1
+2*3
+4*5*6
+7*8*9*10
+11*12*13*14*15
+11*12*13*14*15
+7*8*9*10
+4*5*6
+2*3
+1
+'''
+def print_pattern(N):
+    num = 1
+    for i in range(1, N + 1):
+        for j in range(i):
+            if j < i - 1:
+                print(f"{num}*", end='')
+            else:
+                print(f"{num}", end='')
+            num += 1
+        print('')
+    for i in range(N , 0, -1):
+        start = num - i 
+        curr = start
+        for j in range(i):
+            if j < i - 1:
+                print(f"{curr}*", end='')
+            else:
+                print(f"{curr}", end='')
+            curr += 1
+        num -= i
+        print("")

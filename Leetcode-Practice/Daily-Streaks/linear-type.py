@@ -12,3 +12,19 @@ from collections import Counter
 def frequencySort(nums):
     freq = Counter(nums)
     return sorted(nums, key=lambda x: (freq[x], -x))
+
+
+# SORT THE JUMBLED NUMBERS :
+def sortJumbled(mapping, nums):
+    def translate_integer(num):
+        digits = []
+        num = str(num)
+        for i in range(len(digits)):
+            digits[i] = str(mapping[int(digits[i])])
+        return int("".join(digits))
+
+    number_mapping = {}
+    for num in nums:
+        number_mapping[num] = translate_integer(num)
+    nums.sort(key=lambda x: number_mapping[x])
+    return nums
