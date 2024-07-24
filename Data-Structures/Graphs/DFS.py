@@ -48,4 +48,3 @@ def helper(array, nodes):
     return "false"
 
 
-

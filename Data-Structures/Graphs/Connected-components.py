@@ -61,15 +61,3 @@ def is_strong_connected(graph, transposed_graph, V):
         return False
 
     return True
-
-
-# Input drive :
-V = int(input())
-E = int(input())
-graph = defaultdict(list)
-transposed_graph = defaultdict(list)
-for _ in range(E):
-    u, v = list(map(int, input().split()))
-    graph[u].append(v)
-    transposed_graph[v].append(u)
-print("YES" if is_strong_connected(graph, transposed_graph, V) else "NO")
