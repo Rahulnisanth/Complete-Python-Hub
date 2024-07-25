@@ -8,9 +8,9 @@ def maxProfit(K: int, prices) -> int:
             for j in range(2):
                 for k in range(1, 3):
                     if j:
-                        dp[i][j][k] = max(dp[i + 1][0][k] - prices[i], dp[i + 1][j][k])
+                        dp[i][j][k] = max(dp[i + 1][j][k], prices[i] - dp[i + 1][0][k])
                     else:
-                        dp[i][j][k] = max(prices[i] + dp[i + 1][1][k - 1], dp[i + 1][j][k])
+                        dp[i][j][k] = max(dp[i + 1][j][k], prices[i] + dp[i + 1][1][k - 1])
         return dp[0][1][K]
 
 
