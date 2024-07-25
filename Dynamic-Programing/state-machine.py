@@ -24,3 +24,15 @@ def maximumXor(values, N):
             dp[i][j] = max(take, not_take)
     return max(dp[-1])
 
+
+# BEST TIME TO BUY AND SELL THE STOCKS [III] :
+def maxProfit(prices) -> int:
+    dp = [[[0 for _ in range(3)] for _ in range(2)] for _ in range(len(prices) + 1)]
+    for i in range(len(prices) - 1, -1, -1):
+        for j in range(2):
+            for k in range(1, 3):
+                if j:
+                    dp[i][j][k] = max(dp[i + 1][0][k] - prices[i], dp[i + 1][j][k])
+                else:
+                    dp[i][j][k] = max(prices[i] + dp[i + 1][1][k - 1], dp[i + 1][j][k])
+    return dp[0][1][2]
