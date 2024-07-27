@@ -36,3 +36,16 @@ def maxProfit(prices) -> int:
                 else:
                     dp[i][j][k] = max(prices[i] + dp[i + 1][1][k - 1], dp[i + 1][j][k])
     return dp[0][1][2]
+
+
+# BEST TIME TO BUY AND SELL THE STOCKS WITH COOL DOWN TIME :
+def maxProfit(prices) -> int:
+    N = len(prices)
+    dp = [[0] * (2) for _ in range(N + 2)]
+    for i in range(N - 1, -1, -1):
+        for j in range(2):
+            if j:
+                dp[i][j] = max(dp[i + 1][j], dp[i + 1][0] - prices[i])
+            else:
+                dp[i][j] = max(dp[i + 1][j], dp[i + 2][1] + prices[i])
+    return dp[0][1]
