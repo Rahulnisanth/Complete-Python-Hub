@@ -58,3 +58,16 @@ def sortNumber(nums):
         merge(nums, low, mid, high)
     divide(nums, 0, len(nums) - 1)
     return nums
+
+
+# COUNT OF THE NUMBER OF TEAM ACCORDING TO THE RATINGS :
+def numTeams(rating) -> int:
+    if not rating:
+        return 0
+    count, N = 0, len(rating)
+    for i in range(N - 2):
+        for j in range(i, N - 1):
+            for k in range(j, N):
+                if rating[i] < rating[j] < rating[k] or rating[i] > rating[j] > rating[k]:
+                    count += 1
+    return count
