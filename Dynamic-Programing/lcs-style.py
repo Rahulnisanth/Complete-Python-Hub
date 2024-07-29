@@ -20,3 +20,17 @@ def maxUncrossedLines(nums1, nums2) -> int:
             else:
                 dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
     return dp[-1][-1]
+
+
+# MINIMUM INSERTION STEPS TO MAKE A STRING PALINDROME :
+def minInsertions(s) -> int:
+    N = len(s)
+    dp = [[0] * (N + 1) for _ in range(N + 1)]
+    reverse_string = s[::-1]
+    for i in range(1, N + 1):
+        for j in range(1, N + 1):
+            if s[i - 1] == reverse_string[j - 1]:
+                dp[i][j] = 1 + dp[i - 1][j - 1]
+            else:
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+    return abs((dp[-1][-1]) - N)
