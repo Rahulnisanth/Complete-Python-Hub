@@ -245,3 +245,6 @@ def longest_consecutive_sequence(nums):
 # Sample inputs
 array = list(map(int, input().split()))
 print(longest_consecutive_sequence(array))
+
+
+
