@@ -1,4 +1,4 @@
-# LONGEST COMMON SUBSEQUENCE :
+# LONGEST COMMON SUB-SEQUENCE :
 def longestCommonSubsequence(text1, text2) -> int:
     dp = [[0] * (len(text1) + 1) for _ in range(len(text2) + 1)]
     for i in range(1, len(text2) + 1):

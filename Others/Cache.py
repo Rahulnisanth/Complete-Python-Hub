@@ -247,4 +247,3 @@ array = list(map(int, input().split()))
 print(longest_consecutive_sequence(array))
 
 
-
