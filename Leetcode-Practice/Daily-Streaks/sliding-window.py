@@ -2,7 +2,7 @@
 def minSwaps(nums) -> int:
     # Edge cases :
     ones = nums.count(1)
-    if ones == 0 or ones == len(nums):
+    if ones == 0 or ones == len(nums): 
         return 0
     # Main cases :
     nums = nums + nums
