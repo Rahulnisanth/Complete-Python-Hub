@@ -71,3 +71,16 @@ def numTeams(rating) -> int:
                 if rating[i] < rating[j] < rating[k] or rating[i] > rating[j] > rating[k]:
                     count += 1
     return count
+
+
+# RANGE SUM OF SORTED SUB-ARRAY :
+def rangeSum(nums, n, left, right)->int:
+    if not nums:
+        return 0
+    result = []
+    for i in range(n):
+        dump = 0
+        for j in range(i, n):
+            dump += nums[j]
+            result.append(dump)
+    return sum(sorted(result)[left - 1:right])
