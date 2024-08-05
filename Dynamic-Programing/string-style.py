@@ -66,3 +66,22 @@ def minDistance(self, word1: str, word2: str) -> int:
             else:
                 dp[i][j] = min(dp[i][j - 1], dp[i - 1][j - 1], dp[i - 1][j]) + 1
     return dp[-1][-1]
+
+
+# MINIMUM DELETE TO ASCII SUM :
+def minimumDeleteSum(s1, s2):
+    n1, n2 = len(s1), len(s2)
+    dp =[[0] * (n2 + 1) for _ in range(n1 + 1)]
+    for i in range(1, n1 + 1):
+        dp[i][0] = dp[i - 1][0] + ord(s1[i - 1])
+    for j in range(1, n2 + 1):
+        dp[0][j] = dp[0][j - 1] + ord(s2[j - 1])
+    for i in range(1, n1 + 1):
+        for j in range(1, n2 + 1):
+            if s1[i - 1] == s2[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1]
+            else:
+                del_1 = ord(s1[i - 1]) + dp[i - 1][j]
+                del_2 = ord(s2[j - 1]) + dp[i][j - 1]
+                dp[i][j] = min(del_1, del_2)
+    return dp[-1][-1]
