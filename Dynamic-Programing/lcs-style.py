@@ -34,3 +34,18 @@ def minInsertions(s) -> int:
             else:
                 dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
     return abs((dp[-1][-1]) - N)
+
+
+# LONGEST INCREASING SUB-SEQUENCE :
+def longestIncreasingSubSequence(nums, N):
+    dp = [1] * N
+    for i in range(1, N):
+        for j in range(i):
+            if nums[i] > nums[j]:
+                dp[i] = max(dp[i], dp[j] + 1)
+    return max(dp)
+
+# Input :
+N = int(input())
+nums = [int(input()) for _ in range(N)]
+print(longestIncreasingSubSequence(nums, N))
