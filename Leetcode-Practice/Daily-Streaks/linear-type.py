@@ -84,3 +84,24 @@ def rangeSum(nums, n, left, right)->int:
             dump += nums[j]
             result.append(dump)
     return sum(sorted(result)[left - 1:right])
+
+
+# MINIMUM PUSHES TO MAKE THE WORD :
+def minimumPushes(word: str) -> int:
+    if not word:
+        return 0
+    mapper = Counter(word)
+    # Sorting the dictionary based on value...
+    sorted_mapper = {k:v for k, v in sorted(mapper.items(), key=lambda x:x[1], reverse=True)}
+    # Core drive...
+    keyCount = 0
+    result = 0
+    push = 1
+    for count in sorted_mapper.values():
+        if count == 0: 
+            break
+        result += (count * push)
+        keyCount += 1
+        if keyCount % 8 == 0: 
+            push += 1
+    return result
