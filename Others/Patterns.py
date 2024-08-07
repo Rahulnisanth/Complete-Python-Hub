@@ -167,3 +167,25 @@ def print_pattern(N):
             curr += 1
         num -= i
         print("")
+
+
+'''
+ABCDEFGGFEDCBA
+ABCDEF  FEDCBA
+ABCDE    EDCBA
+ABCD      DCBA
+ABC        CBA
+AB          BA
+A            A
+'''
+def print_pattern(N):
+    for i in range(N):
+        # Upper half
+        for j in range(N - i):
+            print(chr(65 + j), end='') 
+        # Spaces
+        print(' ' * (2 * i), end='')
+        # Lower half
+        for j in range(N - i):
+            print(chr(65 + (N - i - 1 - j)), end='')
+        print()
