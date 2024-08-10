@@ -8,24 +8,36 @@ class BinarySearchTree:
     def __init__(self):
         self.root = None
     
-    def insert(self, node, val):
-        if not node:
-            return Node(val)
-        if val < node.data:
-            node.left = self.insert(node.left, val)
-        else:
-            node.right = self.insert(node.right, val)
-        return node
+    def insert_level_order(self, values):
+        if not values:
+            return None
+        
+        self.root = Node(values[0])
+        nodes = [self.root] 
+        for i in range(1, len(values)):
+            new_node = Node(values[i])
+            parent_index = (i - 1) // 2 
+            if i % 2 == 1:  
+                nodes[parent_index].left = new_node
+            else:  
+                nodes[parent_index].right = new_node
+            nodes.append(new_node)  
     
-    def is_valid(self, node):
-        if not node: return True
-        if node.left and node.left.data > node.data: return False
-        if node.right and node.right.data < node.data: return False
-        return self.is_valid(node.left) and self.is_valid(node.right)
+    def is_valid(self, node, min_val=float('-inf'), max_val=float('inf')):
+        if not node:
+            return True
+        if not (min_val < node.data < max_val):
+            return False
+        return (self.is_valid(node.left, min_val, node.data) and
+                self.is_valid(node.right, node.data, max_val))
 
-# Main drive :
+# Main driver:
 tree = BinarySearchTree()
-for _ in range(7):
-    tree.root = tree.insert(tree.root, int(input()))
-# Printing :
-print(tree.is_valid(tree.root))
+inputs = [int(input()) for _ in range(7)]  
+tree.insert_level_order(inputs)
+
+if tree.is_valid(tree.root):
+    print("Valid BST")
+else:
+    print("Invalid BST")
+
