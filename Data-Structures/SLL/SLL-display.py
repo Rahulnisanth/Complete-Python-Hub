@@ -25,13 +25,14 @@ class LinkedList:
             current.next = prev
             prev = current
             current = past
-            print(prev.data)
+        self.head = prev
 
     def display(self):
         current = self.head
         while current:
             print(current.val, end=' ')
             current = current.next
+        print()
 
 # Input stream :
 n = int(input())
