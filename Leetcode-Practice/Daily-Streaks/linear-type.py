@@ -122,3 +122,27 @@ class KthLargest:
         if len(self.heap) > self.k:
             heapq.heappop(self.heap)
         return self.heap[0]
+
+
+# KTH SMALLEST PAIR :
+def smallestDistancePair(nums, k):
+    nums.sort()
+    def helper(mid):
+        count, left = 0, 0
+        for right in range(len(nums)):
+            while nums[right] - nums[left] > mid:
+                left += 1
+            count += right - left
+        return count
+    
+    low, high = 0, nums[-1] - nums[0]
+    while low < high:
+        mid = (low + high) // 2
+        if helper(mid) >= k:
+            high = mid
+        else:
+            low = mid + 1
+    
+    return low
+
+print(smallestDistancePair([1, 3, 1], 1))
