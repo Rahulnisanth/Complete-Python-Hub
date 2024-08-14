@@ -144,5 +144,3 @@ def smallestDistancePair(nums, k):
             low = mid + 1
     
     return low
-
-print(smallestDistancePair([1, 3, 1], 1))
