@@ -144,3 +144,19 @@ def smallestDistancePair(nums, k):
             low = mid + 1
     
     return low
+
+
+# MAXIMUM DISTANCE IN ARRAYS :
+def maxDistance(arrays)->int:
+    if not arrays:
+        return 0
+    N = len(arrays)
+    min_value = arrays[0][0]
+    max_value = arrays[0][-1]
+    result = 0
+    for i in range(1, N):
+        result = max(result, abs(arrays[i][-1] - min_value))
+        result = max(result, abs(arrays[i][0] - max_value))
+        min_value = min(min_value, arrays[i][0])
+        max_value = max(max_value, arrays[i][-1])
+    return result
