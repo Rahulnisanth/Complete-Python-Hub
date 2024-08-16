@@ -36,3 +36,20 @@ def doubleIt(self, head: Optional[ListNode]) -> Optional[ListNode]:
         value //= 10
         
     return tail
+
+
+# DELETE THE MIDDLE OF THE LINKED LIST :
+def deleteMiddle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    if not head: 
+        return
+    if not head.next:
+        return 
+    slow = head
+    fast = head
+    temp = head
+    while fast and fast.next:
+        temp = slow
+        slow = slow.next
+        fast = fast.next.next
+    temp.next = slow.next
+    return head
