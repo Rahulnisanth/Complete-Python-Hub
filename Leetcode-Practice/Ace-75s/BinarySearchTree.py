@@ -1,5 +1,5 @@
 # SEARCHING IN BST :
-def searchBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+def searchBST(root, val: int):
     if not root:
         return None
     if val > root.val:

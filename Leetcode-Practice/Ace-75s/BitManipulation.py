@@ -15,39 +15,19 @@ def singleNumber(nums) -> int:
     return result
 
 
-# WONDERFUL-SUBSTRING :
-def wonderfulSubstrings(word: str) -> int:
-    count = [0] * 1024
-    result, xor, count[xor] = 0, 0, 1
-    for char in word:
-        idx = ord(char) - ord('a')
-        xor ^= 1 << idx
-        result += count[xor]
-        for i in range(10):
-            result += count[xor ^ (1 << i)]
-        count[xor] += 1
-    return result
-
-
-# SINGLE NUMBER III :
-def singleNumber(nums):
-    xor = 0
-    for num in nums:
-        xor ^= num
-    xor & -xor
-    result = [0, 0]
-    for num in nums:
-        if num & xor == 0:
-            result[0] ^= num
+# MINIMUM FLIPS TO MAKE A OR B EQUAL TO C :
+def minFlips(a, b, c):
+    flips = 0
+    while a > 0 or b > 0 or c > 0:
+        bit_a = a & 1
+        bit_b = b & 1
+        bit_c = c & 1
+        if bit_c == 1:
+            if bit_a == 0 and bit_b == 0:
+                flips += 1
         else:
-            result[1] ^= num
-    return result
-
-
-# FIND THE COMMON CHARACTERS :
-from typing import Counter
-def commonChars(words):
-    min_freq = Counter(words[0])
-    for word in words:
-        min_freq &= Counter(word)
-    return list(min_freq.elements())
+            flips += (bit_a + bit_b)
+        a >>= 1
+        b >>= 1
+        c >>= 1
+    return flips

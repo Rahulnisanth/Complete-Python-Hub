@@ -16,3 +16,17 @@ def guessNumber(n: int) -> int:
         else:
             right = flag - 1
     return left
+
+
+# FIND THE PEAK ELEMENT IN THE ARRAY :
+def findPeakElement(nums) -> int:
+    if not nums:
+        return 0
+    left, right = 0, len(nums) - 1
+    while left < right:
+        mid = (left + right) // 2
+        if nums[mid] > nums[mid + 1]:
+            right = mid
+        else:
+            left = mid + 1
+    return left
