@@ -69,3 +69,21 @@ def maximumSafenessFactor(grid) -> int:
                         max_safeness[nr][nc] = new_safe
                         heapq.heappush(max_heap, (-new_safe, nr, nc))
         return -1  
+
+
+# COUNT THE EQUAL ROW AND COLUMN PAIRS :
+def equalPairs(grid) -> int:
+    if not grid:
+        return 0
+    def helper(grid, row, col):
+        row_list = grid[row]
+        col_list = [grid[i][col] for i in range(len(grid))]
+        return row_list, col_list
+    # Main drive...
+    count = 0
+    for i in range(len(grid)):
+        for j in range(len(grid[i])):
+            row_list, col_list = helper(grid, i, j)
+            if row_list == col_list:
+                count += 1
+    return count
