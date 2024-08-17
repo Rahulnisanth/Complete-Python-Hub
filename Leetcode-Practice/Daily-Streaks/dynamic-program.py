@@ -14,21 +14,29 @@ def minimumDeletions(s: str) -> int:
 
 # MAXIMUM NUMBER OF POINTS WITH COST :
 def maxPoints(points) -> int:
-    M, N = len(points), len(points[0])
-    maxPoints = [0] * N
-    rightView = [0] * N
-    for row in points:
-        # Right -> Left
-        currMax = 0
-        for i in range(N - 1, -1, -1):
-            currMax = max(currMax, maxPoints[i])
-            rightView[i] = currMax
-            currMax -= 1
-        # Left -> Right
-        currMax = 0
-        for i in range(N):
-            currMax = max(currMax, maxPoints[i])
-            maxPoints[i] = max(currMax, rightView[i]) + row[i]
-            currMax -= 1
-    
-    return max(maxPoints)
+    N, M = len(points), len(points[0])
+    dp = [0] * M
+    for i in range(N):
+        left_max = [0] * M
+        right_max = [0] * M
+        # Left
+        left_max[0] = dp[0]
+        for j in range(1, M):
+            left_max[j] = max(left_max[j - 1] - 1, dp[j])
+        # Right
+        right_max[M - 1] = dp[M - 1]
+        for j in range(M - 2, -1, -1):
+            right_max[j] = max(right_max[j + 1] - 1, dp[j])
+        # Overall 
+        for j in range(M):
+            dp[j] = points[i][j] + max(left_max[j], right_max[j])
+    return max(dp)
+# {OR}
+def maxPoints(points) -> int:
+    N, M = len(points), len(points[0])
+    dp = [[0] * (M + 1) for _ in range(N + 1)]
+    for i in range(1, N):
+        for j in range(1, M + 1):
+            dp[i][j] =  points[i - 1][j - 1] +\
+                        max([dp[i - 1][col] - abs(j - col) for col in range(1, M + 1)])
+    return max(dp[-1])
