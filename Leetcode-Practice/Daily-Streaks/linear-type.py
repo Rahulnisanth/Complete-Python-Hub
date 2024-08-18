@@ -160,3 +160,20 @@ def maxDistance(arrays)->int:
         min_value = min(min_value, arrays[i][0])
         max_value = max(max_value, arrays[i][-1])
     return result
+
+
+# NTH UGLY NUMBER :
+from heapq import heappop, heappush
+def nthUglyNumber(n: int) -> int:
+    primes = [2, 3, 5]
+    heap = [1]
+    visited = set()
+    visited.add(1)
+    for _ in range(n):
+        current = heappop(heap)
+        for prime in primes:
+            new_num = current * prime
+            if new_num not in visited:
+                visited.add(new_num)
+                heappush(heap, new_num)
+    return current
