@@ -177,3 +177,18 @@ def nthUglyNumber(n: int) -> int:
                 visited.add(new_num)
                 heappush(heap, new_num)
     return current
+
+
+# 2 KEYS KEYBOARD :
+def minSteps(n: int) -> int:
+    def helper(current):
+        if current == 1: 
+            return 0
+        ans = current
+        idx = 2
+        while idx * idx <= current:
+            if current % idx == 0:
+                ans = min(ans, helper(current // idx) + idx)
+            idx += 1
+        return ans
+    return helper(n)
