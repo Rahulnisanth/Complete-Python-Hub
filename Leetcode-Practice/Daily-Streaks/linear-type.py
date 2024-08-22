@@ -192,3 +192,12 @@ def minSteps(n: int) -> int:
             idx += 1
         return ans
     return helper(n)
+
+
+# ONES COMPLEMENT :
+def findComplement(num: int) -> int:
+    bin_val = list(bin(num))[2:]
+    result = ''
+    for val in bin_val:
+        result += '1' if val == '0' else '0'
+    return int(result, 2)
