@@ -107,15 +107,17 @@ def hIndex(citations) -> int:
 
 # PRODUCT ARRAY EXCEPT SELF :
 def productExceptSelf(nums):
-    product = [0] * len(nums)
-    for i in range(len(nums)):
-        proCurr = 1
-        for j in range(len(nums)):
-            if i == j:
-                continue
-            proCurr *= nums[j]
-        product[i] = proCurr
-    return product
+    left_multi = right_multi = 1
+    N = len(nums)
+    left = [0] * N
+    right = [0] * N
+    for i in range(N):
+        j = -1 - i
+        left[i] = left_multi
+        right[j] = right_multi
+        left_multi *= nums[i]
+        right_multi *= nums[j]
+    return [l * r for l, r in zip(left, right)]
 
 
 # GAS STATION :
