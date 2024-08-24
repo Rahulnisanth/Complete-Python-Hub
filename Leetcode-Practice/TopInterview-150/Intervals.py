@@ -22,19 +22,15 @@ def summaryRanges(nums):
 
 # MERGE INTERVALS :
 def merge(intervals):
-    if not intervals:
-        return []
-    else:
-        intervals.sort(key=lambda x: x[0])
-        merged = [intervals[0]]
+    intervals.sort(key=lambda x: x[0])
+    stack = [intervals[0]]
+    for i in range(1, len(intervals)):
+        start, end = stack[-1]
+        if intervals[i][0] <= end:
+            stack[-1] = [start, max(end, intervals[i][1])]
+        else:
+            stack.append(intervals[i])
+    return stack
+    
 
-        for i in range(1, len(intervals)):
-            current_start, current_end = intervals[i]
-            last_merged_start, last_merged_end = merged[-1]
-            
-            if current_start <= last_merged_end:
-                merged[-1] = [last_merged_start, max(last_merged_end, current_end)]
-            else:
-                merged.append([current_start, current_end])
 
-        return merged
