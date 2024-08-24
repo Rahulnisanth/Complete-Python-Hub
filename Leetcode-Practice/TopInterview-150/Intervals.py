@@ -32,5 +32,3 @@ def merge(intervals):
             stack.append(intervals[i])
     return stack
     
-
-
