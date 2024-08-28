@@ -243,3 +243,27 @@ def longest_consecutive_sequence(nums):
 # Sample inputs
 array = list(map(int, input().split()))
 print(longest_consecutive_sequence(array))
+
+
+def maxNumberOfBalloons(self, text: str) -> int:
+    if not text:
+        return 0
+    test = "ballon"
+    mapper = {}
+    for ch in text:
+        if ch in test:
+            if ch in mapper:
+                mapper[ch] += 1
+            else:
+                mapper[ch] = 1
+    min_val = float("inf")
+    if len(mapper) != 5:
+        return 0
+    for k, v in mapper.items():
+        if k == 'l' or k == 'o':
+            v = v // 2
+        else:
+            v = v // 1
+        min_val = min(min_val, v)
+    return min_val
+
