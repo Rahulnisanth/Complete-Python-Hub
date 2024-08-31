@@ -45,3 +45,25 @@ def countSubIslands(grid1, grid2) -> int:
                 if is_sub_island(i, j):
                     count += 1
     return count     
+
+
+# MOST STONES REMOVED IN SAME ROW AND COL :
+def removeStones(stones) -> int:
+    def dfs(idx, visited, stones):
+        visited[idx] = True
+        for i in range(N):
+            if not visited[i]:
+                if stones[idx][0] == stones[i][0]:
+                    dfs(i, visited, stones)
+                if stones[idx][1] == stones[i][1]:
+                    dfs(i, visited, stones)
+    # main drive :
+    N, count = len(stones), 0
+    visited = [False] * N
+    for i in range(N):
+        if not visited[i]:
+            count += 1
+            dfs(i, visited, stones)
+    return (N - count)
+
+
