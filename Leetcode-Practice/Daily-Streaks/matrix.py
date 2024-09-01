@@ -37,3 +37,14 @@ def spiralMatrixIII(self, rows, cols, rStart, cStart):
             else:
                 moves = next_moves - 1
     return res
+
+
+# CONVERT THE 1D ARRAY TO 2D ARRAY :
+def construct2DArray(original, m, n):
+    list_length = len(original)
+    if (m * n) != list_length:
+        return []
+    matrix = []
+    for i in range(m):
+        matrix.append(original[i*n : (i + 1)*n])
+    return matrix
