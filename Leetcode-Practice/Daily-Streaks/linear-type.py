@@ -201,3 +201,14 @@ def findComplement(num: int) -> int:
     for val in bin_val:
         result += '1' if val == '0' else '0'
     return int(result, 2)
+
+
+# FIND THE STUDENT THAT WILL REPLACE THE CHALK:
+def chalkReplacer(chalk, k) -> int:
+    k %= sum(chalk)
+    if k <= 0:
+        return 0
+    for idx, c in enumerate(chalk):
+        if k < c:
+            return idx
+        k -= c
