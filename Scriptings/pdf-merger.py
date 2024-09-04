@@ -1,5 +1,5 @@
 # IMPORTING THE LATEST VERSION OF pyPDF2-3.0.1
-from pyPDF2 import PdfMerger
+from pyPDF2 import PdfMerger # type: ignore
 import sys
 
 # fetching the file names in the command palette :
