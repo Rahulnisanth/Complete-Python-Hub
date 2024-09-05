@@ -63,7 +63,7 @@ def robotSim(commands, obstacles) -> int:
 
 
 # FIND THE MISSING DICES :
-def missingRolls(rolls, mean: int, n: int):
+def missingRolls(rolls, mean, n):
     total_sum = sum(rolls)
     total_len = len(rolls) + n
     needed = mean * total_len - total_sum
@@ -78,3 +78,12 @@ def missingRolls(rolls, mean: int, n: int):
             result.append(full)
         extra = max(0, extra - 1)
     return result
+# OR 
+def missingRolls(rolls, mean, n):
+    total_sum = mean * (n + len(rolls))
+    roll_sum = sum(rolls)
+    needed = total_sum - roll_sum
+    if needed < n or needed > (n * 6):
+        return []
+    quot, rem = needed // n, needed % n
+    return [quot + (1 if i < rem else 0) for i in range(n)]
