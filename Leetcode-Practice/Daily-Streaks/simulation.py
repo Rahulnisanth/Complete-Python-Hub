@@ -60,3 +60,21 @@ def robotSim(commands, obstacles) -> int:
                     x -= 1
         result = max(result, (x ** 2) + (y ** 2))
     return result
+
+
+# FIND THE MISSING DICES :
+def missingRolls(rolls, mean: int, n: int):
+    total_sum = sum(rolls)
+    total_len = len(rolls) + n
+    needed = mean * total_len - total_sum
+    result = []
+    if n > needed or (n * 6) < needed:
+        return result
+    full, extra = needed // n, needed % n
+    for _ in range(n):
+        if extra > 0:
+            result.append(full + 1)
+        else:
+            result.append(full)
+        extra = max(0, extra - 1)
+    return result
