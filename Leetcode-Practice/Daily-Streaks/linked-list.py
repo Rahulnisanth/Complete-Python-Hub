@@ -14,3 +14,16 @@ def modifiedList(nums, head):
         else:
             curr = curr.next
     return dummy.next
+
+
+# CHECK WHETHER LINKED LIST IN BINARY TREE :
+def isSubPath(head, root) -> bool:
+    def helper(head_node, node):
+        if not head_node:
+            return True
+        if not node or head_node.val != node.val:
+            return False
+        return  helper(head_node.next, node.left) or helper(head_node.next, node.right)
+    if not root:
+        return False
+    return helper(head, root) or isSubPath(head, root.left) or isSubPath(head, root.right)
