@@ -87,3 +87,42 @@ def missingRolls(rolls, mean, n):
         return []
     quot, rem = needed // n, needed % n
     return [quot + (1 if i < rem else 0) for i in range(n)]
+
+
+# SPIRAL MATRIX - IV :
+def spiralMatrix(m, n, head):
+    matrix = [[-1] * n for _ in range(m)]
+    top, left = 0, 0
+    down, right = m - 1, n - 1
+    while left <= right and top <= down and head:
+        # Top
+        for i in range(left, right + 1):
+            if not head:
+                break
+            matrix[top][i] = head.val
+            head = head.next
+        top += 1
+        # Right
+        for i in range(top, down + 1):
+            if not head:
+                break
+            matrix[i][right] = head.val
+            head = head.next
+        right -= 1
+        if top <= down and left <= right and head:
+            # Down 
+            for i in range(right, left - 1, -1):
+                if not head:
+                    break
+                matrix[down][i] = head.val
+                head = head.next
+            down -= 1
+            # Left
+            for i in range(down, top - 1, -1):
+                if not head:
+                    break
+                matrix[i][left] = head.val
+                head = head.next
+            left += 1
+    return matrix
+                
