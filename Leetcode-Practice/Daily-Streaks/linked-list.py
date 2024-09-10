@@ -27,3 +27,23 @@ def isSubPath(head, root) -> bool:
     if not root:
         return False
     return helper(head, root) or isSubPath(head, root.left) or isSubPath(head, root.right)
+
+
+# INSERTION OF GCD IN LINKED LIST :
+def insertGreatestCommonDivisors(head):
+    def find_gcd(a, b):
+        if a == 0:
+            return b
+        return find_gcd(b % a, a)
+    # core concept:
+    dummy = head
+    while dummy and dummy.next:
+        slow = dummy
+        fast = dummy.next
+        # Gcd insertion :
+        GCD = find_gcd(slow.val, fast.val)
+        result = ListNode(GCD, fast) # type: ignore
+        slow.next = result
+        # Head traversal ...
+        dummy = dummy.next.next
+    return head
