@@ -17,3 +17,16 @@ def xorQueries(arr, queries):
     for left, right in queries:
         result.append(prefix[left] ^ prefix[right + 1])
     return result
+
+
+# LONGEST SUB-ARRAY WITH BITWISE AND :
+def longestSubArray(nums) -> int:
+    result = count = 0
+    max_and = max(nums)
+    for num in nums:
+        if num == max_and:
+            count += 1
+        else:
+            count = 0
+        result = max(result, count)
+    return result
