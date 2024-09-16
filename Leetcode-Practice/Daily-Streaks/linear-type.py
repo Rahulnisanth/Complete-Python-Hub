@@ -226,3 +226,14 @@ def countConsistentStrings(allowed, words) -> int:
         if is_correct(word):
             count += 1
     return count
+
+
+# MINIMUM TIME DIFFERENCE :
+def findMinDifference(timePoints) -> int:
+    sorted_time = [int(t[:2]) * 60 + int(t[3:]) for t in timePoints]
+    sorted_time.sort()
+    minDiff = float("inf")
+    for i in range(1, len(sorted_time)):
+        minDiff = min(minDiff, abs(sorted_time[i - 1] - sorted_time[i]))
+    minDiff = min(minDiff, 1440 + sorted_time[0] - sorted_time[-1])
+    return minDiff
