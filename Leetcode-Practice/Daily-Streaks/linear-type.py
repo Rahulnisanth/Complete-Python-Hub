@@ -237,3 +237,13 @@ def findMinDifference(timePoints) -> int:
         minDiff = min(minDiff, abs(sorted_time[i - 1] - sorted_time[i]))
     minDiff = min(minDiff, 1440 + sorted_time[0] - sorted_time[-1])
     return minDiff
+
+
+# UNCOMMON WORD FROM TWO SENTENCE :
+def uncommonFromSentences(s1: str, s2: str):
+    mapper = Counter(s1.split()) + Counter(s2.split())
+    result = []
+    for word, count in mapper.items():
+        if count == 1:
+            result.append(word)
+    return result
