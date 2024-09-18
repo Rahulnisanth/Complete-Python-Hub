@@ -247,3 +247,15 @@ def uncommonFromSentences(s1: str, s2: str):
         if count == 1:
             result.append(word)
     return result
+
+
+# LARGEST NUMBER :
+from functools import cmp_to_key
+def largestNumber(nums) -> str:
+    # Comparator...
+    def compare(x, y):
+        return -1 if x + y > y + x else 1
+    if not nums:
+        return ''
+    sorted_arr = sorted(list(map(str, nums)), key=cmp_to_key(compare))
+    return str(int(''.join(sorted_arr)))
