@@ -67,3 +67,30 @@ def removeStones(stones) -> int:
     return (N - count)
 
 
+# DIFFERENT WAYS TO ADD PARENTHESIS :
+def diffWaysToCompute(expression: str):
+    def is_valid(op):
+        return (op == '+' or op == '-' or op == '*')
+    def backtrack(exp, memo):
+        if exp in memo:
+            return memo[exp]
+        result = []
+        for i in range(len(exp)):
+            if is_valid(exp[i]):
+                prefix = backtrack(exp[:i], memo)
+                suffix = backtrack(exp[i + 1:], memo)
+                for j in range(len(prefix)):
+                    for k in range(len(suffix)):
+                        if exp[i] == '+':
+                            result.append(int(prefix[j]) + int(suffix[k]))
+                        elif exp[i] == '-':
+                            result.append(int(prefix[j]) - int(suffix[k]))
+                        elif exp[i] == '*':
+                            result.append(int(prefix[j]) * int(suffix[k]))
+        # Edge case : 
+        if len(result) == 0:
+            result.append(int(exp))
+        memo[exp] = result
+        return result
+    memo = {}
+    return backtrack(expression, memo)
