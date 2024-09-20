@@ -259,3 +259,11 @@ def largestNumber(nums) -> str:
         return ''
     sorted_arr = sorted(list(map(str, nums)), key=cmp_to_key(compare))
     return str(int(''.join(sorted_arr)))
+
+
+# SHORTEST PALINDROME :
+def shortestPalindrome(s: str) -> str:
+    reversed_str = s[::-1]
+    for i in range(len(s)):
+        if s.startswith(reversed_str[i:]):
+            return reversed_str[:i] + s
