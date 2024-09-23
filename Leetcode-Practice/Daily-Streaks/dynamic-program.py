@@ -54,3 +54,16 @@ def strangePrinter(s: str) -> int:
                 if s[k] == s[j]:
                     dp[i][j] = min(dp[i][j], dp[i][k] + (dp[k + 1][j - 1] if k + 1 <= j - 1 else 0))
     return dp[0][-1]
+
+
+# MINIMUM EXTRA CHARACTERS :
+def minExtraChar(s, dictionary) -> int:
+    dict_set, N = set(dictionary), len(s)
+    dp = [float("inf")] * (N + 1)
+    dp[0] = 0
+    for i in range(1, N + 1):
+        for j in range(i):
+            if s[j:i] in dict_set:
+                dp[i] = min(dp[i], dp[j])
+        dp[i] = min(dp[i], dp[i - 1] + 1)
+    return dp[-1]
