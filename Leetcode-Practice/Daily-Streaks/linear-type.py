@@ -267,3 +267,16 @@ def shortestPalindrome(s: str) -> str:
     for i in range(len(s)):
         if s.startswith(reversed_str[i:]):
             return reversed_str[:i] + s
+
+
+# MY CALENDAR I :
+class MyCalendar:
+    def __init__(self):
+        self.data = []
+
+    def book(self, start: int, end: int) -> bool:
+        for x, y in self.data:
+            if not (end <= x or start >= y):
+                return False
+        self.data.append([start, end])
+        return True
