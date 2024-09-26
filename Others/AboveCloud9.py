@@ -1,30 +1,33 @@
 # BFS :
+# Space Complexity: Proportional to the maximum width of the tree.
+# 27 for the specific tree.
 from collections import deque
 def bfs(root):
-    def bfs_helper(node):
-        if not node:
-            return 
-        q = deque([node])
-        while q:
-            curr = q.popleft()
-            print(curr.value) 
-            if curr.left:
-                q.append(curr.left)
-            if curr.middle:
-                q.append(curr.middle)
-            if curr.right:
-                q.append(curr.right)
-    return bfs_helper(root)
+    if not root:
+        return
+    queue = deque([root])
+    result =[]
+    while queue:
+        current = queue.popleft()
+        result.append(current.value)
+        if current.left:
+            queue.append(current.left)
+        if current.middle:
+            queue.append(current.middle)
+        if current.right:
+            queue.append(current.right)
 
 
 # DFS :
+# Space Complexity: Proportional to the maximum depth of the tree.
+# 4 for this specific tree.
 def dfs(root):
-    def dfs_helper(node):
-        if not node:
-            return 
-        print(node.value)
-        dfs_helper(node.left)
-        dfs_helper(node.middle)
-        dfs_helper(node.right)
-    return dfs_helper(root)
+    if not root:
+        return
+    result = []
+    result.append(root.value)
+    result.extend(dfs(root.left))
+    result.extend(dfs(root.middle))
+    result.extend(dfs(root.right))
+    return result
 
