@@ -276,7 +276,24 @@ class MyCalendar:
 
     def book(self, start: int, end: int) -> bool:
         for x, y in self.data:
-            if not (end <= x or start >= y):
+            if max(start, x) < min(end, y):
                 return False
         self.data.append([start, end])
+        return True
+
+
+# MY CALENDAR II :
+class MyCalendarTwo:
+    def __init__(self):
+        self.events = []
+        self.overlaps = []
+
+    def book(self, start: int, end: int) -> bool:
+        for x, y in self.overlaps:
+            if max(start, x) < min(end, y):
+                return False
+        for x, y in self.events:
+            if max(start, x) < min(end, y):
+                self.overlaps.append((max(start, x), min(end, y)))
+        self.events.append((start, end))
         return True
