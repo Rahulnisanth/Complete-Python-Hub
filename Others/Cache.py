@@ -266,3 +266,17 @@ def maxNumberOfBalloons(self, text: str) -> int:
             v = v // 1
         min_val = min(min_val, v)
     return min_val
+
+
+def is_balanced(root):
+    def helper(node):
+        if not node:
+            return
+        if node.left:
+            leftHeight = 1 + helper(node.left)
+        if node.right:
+            rightHeight = 1 + helper(node.right)
+        return max(leftHeight, rightHeight)
+    left_height = 1 + helper(root.left)
+    right_height = 1 + helper(root.right)
+    return -1 <= (left_height - right_height) <= 1
