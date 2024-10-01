@@ -125,4 +125,19 @@ def spiralMatrix(m, n, head):
                 head = head.next
             left += 1
     return matrix
-                
+
+
+# CHECK WHETHER THE ARRAY OF PAIRS DIVISIBLE BY K :
+def canArrange(arr, k) -> bool:
+    N = len(arr)
+    freq = [0] * k
+    for num in arr:
+        rem = num % k
+        if freq[(k - rem) % k] != 0:
+            freq[(k - rem) % k] -= 1
+        else:
+            freq[rem] += 1
+    for rem in freq:
+        if rem != 0:
+            return False
+    return True
