@@ -297,3 +297,12 @@ class MyCalendarTwo:
                 self.overlaps.append((max(start, x), min(end, y)))
         self.events.append((start, end))
         return True
+
+
+# RANK TRANSFORM OF THE ARRAY :
+def arrayRankTransform(arr):
+    if not arr:
+        return []
+    sorted_set = sorted(set(arr))
+    ranks = {num: rank + 1 for rank, num in enumerate(sorted_set)}
+    return [ranks[num] for num in arr]
