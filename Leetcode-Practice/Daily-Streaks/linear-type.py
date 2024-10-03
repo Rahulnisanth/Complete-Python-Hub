@@ -306,3 +306,22 @@ def arrayRankTransform(arr):
     sorted_set = sorted(set(arr))
     ranks = {num: rank + 1 for rank, num in enumerate(sorted_set)}
     return [ranks[num] for num in arr]
+
+
+# MAKE SUM DIVISIBLE BY P :
+def minSubArray(nums, p) -> int:
+    n = len(nums)
+    total = sum(nums) % p
+    if total == 0:
+        return 0
+    prefix_sum, result = 0, n + 1
+    mapper = {0 : -1}
+    for i, v in enumerate(nums):
+        prefix_sum += v
+        cur = prefix_sum % p - total
+        if cur < 0:
+            cur += p
+        if cur in mapper:
+            result = min(result, i - mapper[cur])
+        mapper[prefix_sum % p] = i
+    return result if result < n else -1
