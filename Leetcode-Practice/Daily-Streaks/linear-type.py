@@ -325,3 +325,15 @@ def minSubArray(nums, p) -> int:
             result = min(result, i - mapper[cur])
         mapper[prefix_sum % p] = i
     return result if result < n else -1
+
+
+# DIVIDE THE TEAMS OF THE PLAYERS BY EQUAL SKILLS :
+def dividePlayers(skill) -> int:
+    skill.sort()
+    total_skill = skill[0] + skill[-1]
+    N, result = len(skill), 0
+    for i in range(N // 2):
+        if (skill[i] + skill[N - i - 1]) != total_skill:
+            return -1
+        result += (skill[i] * skill[N - i - 1])
+    return result
