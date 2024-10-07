@@ -21,3 +21,16 @@ class CustomStack:
             for i in range(len(self.stack)):
                 if i < k:
                     self.stack[i] += val
+
+
+# MIN STRING LENGTH AFTER THE REMOVAL OF SUB-STRINGS :
+def minLength(s: str) -> int:
+    stack = []
+    for ch in s:
+        if stack:
+            if ch == 'D' and stack[-1] == 'C':
+                stack.pop()
+            elif ch == 'B' and stack[-1] == 'A':
+                stack.pop()
+        stack.append(ch)
+    return len(stack)
