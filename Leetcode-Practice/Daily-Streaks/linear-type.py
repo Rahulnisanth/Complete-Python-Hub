@@ -337,3 +337,14 @@ def dividePlayers(skill) -> int:
             return -1
         result += (skill[i] * skill[N - i - 1])
     return result
+
+
+# MIN SWAPS TO MAKE THE STRING BALANCED :
+def minSwaps(s: str) -> int:
+    count = 0
+    for ch in s:
+        if ch == '[': 
+            count += 1
+        elif count > 0: 
+            count -= 1
+    return (count + 1) // 2
