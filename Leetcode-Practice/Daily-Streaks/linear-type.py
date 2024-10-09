@@ -348,3 +348,17 @@ def minSwaps(s: str) -> int:
         elif count > 0: 
             count -= 1
     return (count + 1) // 2
+
+
+# MIN ADDS TO MAKE THE PARENTHESIS BALANCED :
+def minAddToMakeValid(s: str) -> int:
+    opens = closes = 0
+    for ch in s:
+        if ch == '(':
+            opens += 1
+        elif ch == ')':
+            if opens > 0:
+                opens -= 1
+            else:
+                closes += 1
+    return opens + closes
