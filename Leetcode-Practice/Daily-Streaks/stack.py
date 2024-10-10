@@ -7,7 +7,7 @@ class CustomStack:
     def push(self, x: int) -> None:
         if len(self.stack) < self.size:
             self.stack.append(x)
-        
+
     def pop(self) -> int:
         if self.stack:
             return self.stack.pop(-1)
@@ -28,9 +28,24 @@ def minLength(s: str) -> int:
     stack = []
     for ch in s:
         if stack:
-            if ch == 'D' and stack[-1] == 'C':
+            if ch == "D" and stack[-1] == "C":
                 stack.pop()
-            elif ch == 'B' and stack[-1] == 'A':
+            elif ch == "B" and stack[-1] == "A":
                 stack.pop()
         stack.append(ch)
     return len(stack)
+
+
+# MAXIMUM WIDTH OF THE RAMP :
+def maxWidthRamp(nums) -> int:
+    stack, N = [], len(nums)
+    for i in range(N):
+        if not stack or nums[i] < nums[stack[-1]]:
+            stack.append(i)
+    result = 0
+    for j in range(N - 1, -1, -1):
+        while stack and nums[j] >= nums[stack[-1]]:
+            result = max(result, j - stack.pop())
+            if result == j:
+                return result
+    return result
