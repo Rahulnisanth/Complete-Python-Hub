@@ -68,3 +68,18 @@ def smallestChair(times, targetFriend: int) -> int:
         if start == target[0]:
             return temp
     return -1
+
+
+# MAXIMUM SCORE AFTER APPLYING K OPERATIONS :
+import math
+
+
+def maxKelements(nums, k) -> int:
+    heap = [-num for num in nums]
+    heapq.heapify(heap)
+    score = 0
+    for _ in range(k):
+        item = -heapq.heappop(heap)
+        score += item
+        heapq.heappush(heap, -math.ceil(item / 3))
+    return score
