@@ -30,3 +30,17 @@ def longestSubArray(nums) -> int:
             count = 0
         result = max(result, count)
     return result
+
+
+# COUNT THE MAXIMUM NUMBER OF BITWISE-OR SUBSETS :
+def countMaxOrSubsets(nums) -> int:
+    max_or = 0
+    for num in nums:
+        max_or |= num
+    def backtrack(idx, curr):
+        if idx == len(nums):
+            return 1 if curr == max_or else 0
+        include = backtrack(idx + 1, curr | nums[idx])
+        exclude = backtrack(idx + 1, curr)
+        return include + exclude
+    return backtrack(0, 0)
