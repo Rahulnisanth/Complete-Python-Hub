@@ -67,11 +67,11 @@ def parseBoolExpr(self, expression: str) -> bool:
             operator = stack.pop()  
             
             if operator == '!':
-                result = not self.to_bool(sub_expr[0])
+                result = not to_bool(sub_expr[0])
             elif operator == '&':
-                result = all(self.to_bool(val) for val in sub_expr)
+                result = all(to_bool(val) for val in sub_expr)
             elif operator == '|':
-                result = any(self.to_bool(val) for val in sub_expr)
+                result = any(to_bool(val) for val in sub_expr)
             
             stack.append('t' if result else 'f')
         elif char not in (',', ' '): 
