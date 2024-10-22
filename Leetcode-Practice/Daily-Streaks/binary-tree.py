@@ -72,3 +72,31 @@ def delNodes(root, to_delete):
         return None if is_deleted else node
     helper(root, True)
     return result
+
+
+# KTH LARGEST LEVEL SUM IN THE BINARY TREE :
+import heapq
+from collections import deque
+def kthLargestLevelSum(root, k: int) -> int:
+    if not root:
+        return -1
+    heap = []
+    def level_traversal(node):
+        if not node:
+            return -1
+        q = deque([node])
+        while q:
+            lvl_size = len(q)
+            adder = 0
+            for _ in range(lvl_size):
+                current = q.popleft()
+                adder += current.val
+                if current.left:
+                    q.append(current.left)
+                if current.right:
+                    q.append(current.right)
+            heapq.heappush(heap, adder)
+            if len(heap) > k:
+                heapq.heappop(heap)
+    level_traversal(root)
+    return heap[0] if len(heap) >= k else -1 
