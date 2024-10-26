@@ -100,3 +100,45 @@ def kthLargestLevelSum(root, k: int) -> int:
                 heapq.heappop(heap)
     level_traversal(root)
     return heap[0] if len(heap) >= k else -1 
+
+
+# HEIGHT OF THE BINARY TREE AFTER REMOVAL OF SUBTREE QUERIES :
+def treeQueries(self, root, queries):
+    # pre-calculate height for each node: left subtree height and right subtree height
+    levels = {}
+    heights = {}
+    calculateHeightDepth(root, 0, heights, levels)
+
+    for key, val in levels.items():
+        levels[key] = sorted(levels[key], key=lambda x: x[1], reverse=True)
+    
+    answer = []
+    for query in queries:
+        ans = calculateQuery(query, heights, levels)
+        answer.append(ans)
+    return answer
+
+def calculateHeightDepth(node, cur_height, heights, levels):
+    if not node:
+        return -1
+    
+    heights[node.val] = cur_height
+    
+    
+    left = calculateHeightDepth(node.left, cur_height + 1, heights, levels)
+    right = calculateHeightDepth(node.right, cur_height + 1, heights, levels)
+    depth = 1 + max(left, right)
+    if levels.get(cur_height):
+        levels[cur_height].append((node.val, depth))
+    else:
+        levels[cur_height] = [(node.val, depth)]
+    return depth
+
+def calculateQuery(query, heights, levels):
+    level = heights[query]
+    same_level = levels[level]
+    max_depth = 0
+    for node, depth in same_level:
+        if node != query:
+            return  depth + level if len(same_level) > 1 else level - 1
+    return level - 1
