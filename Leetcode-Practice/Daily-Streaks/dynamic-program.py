@@ -67,3 +67,18 @@ def minExtraChar(s, dictionary) -> int:
                 dp[i] = min(dp[i], dp[j])
         dp[i] = min(dp[i], dp[i - 1] + 1)
     return dp[-1]
+
+
+# COUNT THE SQUARE SUB-MATRICES WITH ALL ONES :
+def countSquares(self, matrix: List[List[int]]) -> int:
+    N, M = len(matrix), len(matrix[0])
+    result = sum(matrix[0])
+    for i in range(1, N):
+        result += matrix[i][0]
+        for j in range(1, M):
+            if matrix[i][j]:
+                matrix[i][j] += min(
+                    matrix[i - 1][j - 1], matrix[i][j - 1], matrix[i - 1][j]
+                )
+                result += matrix[i][j]
+    return result
