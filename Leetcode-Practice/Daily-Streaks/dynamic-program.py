@@ -70,7 +70,7 @@ def minExtraChar(s, dictionary) -> int:
 
 
 # COUNT THE SQUARE SUB-MATRICES WITH ALL ONES :
-def countSquares(self, matrix: List[List[int]]) -> int:
+def countSquares(matrix) -> int:
     N, M = len(matrix), len(matrix[0])
     result = sum(matrix[0])
     for i in range(1, N):
