@@ -83,3 +83,23 @@ def maxKelements(nums, k) -> int:
         score += item
         heapq.heappush(heap, -math.ceil(item / 3))
     return score
+
+
+# SHORTEST SUB-ARRAY WITH SUM AT LEAST K
+def shortestSubArray(nums, k: int) -> int:
+    N = len(nums)
+    prefix = [0] * (N + 1)
+    # cumulative sum...
+    for i in range(N):
+        prefix[i + 1] = prefix[i] + nums[i]
+
+    q = deque()
+    result = float("inf")
+    for i in range(N + 1):
+        while q and prefix[i] - prefix[q[0]] >= k:
+            result = min(result, i - q.popleft())
+        while q and prefix[i] <= prefix[q[-1]]:
+            q.pop()
+        q.append(i)
+
+    return result if result != float("inf") else -1
