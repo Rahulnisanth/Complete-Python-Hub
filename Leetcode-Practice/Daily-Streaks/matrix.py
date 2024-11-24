@@ -48,3 +48,16 @@ def construct2DArray(original, m, n):
     for i in range(m):
         matrix.append(original[i*n : (i + 1)*n])
     return matrix
+
+
+# MAXIMUM SUM OF MATRIX
+def maxMatrixSum(matrix) -> int:
+    result, count = 0, 0
+    min_value = float('inf')
+    for i in range(len(matrix)):
+        for j in range(len(matrix[0])):
+            if matrix[i][j] < 0: count += 1
+            value = abs(matrix[i][j])
+            min_value = min(min_value, value)
+            result += value
+    return result if count % 2 == 0 else result - (min_value * 2)
