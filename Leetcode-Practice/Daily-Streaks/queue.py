@@ -103,3 +103,13 @@ def shortestSubArray(nums, k: int) -> int:
         q.append(i)
 
     return result if result != float("inf") else -1
+
+
+# TAKE GIFTS FROM RICHEST PILE
+def pickGifts(gifts, k):
+    heap = [-gift for gift in gifts]
+    heapq.heapify(heap)
+    for _ in range(k):
+        temp = math.floor(math.isqrt(-heapq.heappop(heap)))
+        heapq.heappush(heap, -temp)
+    return -sum(heap)        
