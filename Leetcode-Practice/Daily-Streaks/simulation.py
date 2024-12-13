@@ -141,3 +141,19 @@ def canArrange(arr, k) -> bool:
         if rem != 0:
             return False
     return True
+
+
+# FIND THE SCORE OF AN ARRAY AFTER MARKING ALL ELEMENTS :
+def findScore(nums):
+    N, score = len(nums), 0
+    visited = [False] * N
+    idxs = list(range(N))
+    idxs.sort(key=lambda x:(nums[x], x))
+    for idx in idxs:
+        if visited[idx]:
+            continue
+        score += nums[idx]
+        visited[idx] = True
+        if idx > 0: visited[idx - 1] = True
+        if idx + 1 < N: visited[idx + 1] = True
+    return score
