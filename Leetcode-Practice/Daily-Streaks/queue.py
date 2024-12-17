@@ -112,4 +112,35 @@ def pickGifts(gifts, k):
     for _ in range(k):
         temp = math.floor(math.isqrt(-heapq.heappop(heap)))
         heapq.heappush(heap, -temp)
-    return -sum(heap)        
+    return -sum(heap)     
+
+
+# CONSTRUCT STRING WITH REPEAT LIMITS
+def repeatLimitedString(self, s: str, repeatLimit: int) -> str:
+        counter = Counter(s)
+        q = [-ord(ch) for ch, _ in counter.items()]
+        heapify(q)
+        result = []
+        while q:
+            curr = chr(-heappop(q))
+            count = counter[curr]
+
+            if count <= repeatLimit:
+                result.append(curr * count)
+                del counter[curr]
+            else:
+                result.append(curr * repeatLimit)
+                counter[curr] -= repeatLimit
+
+                if not q:
+                    break
+
+                next_char = chr(-heappop(q))
+                result.append(next_char)
+                counter[next_char] -= 1
+
+                if counter[next_char] > 0:
+                    heappush(q, -ord(next_char))
+                heappush(q, -ord(curr))
+
+        return "".join(result)
