@@ -362,3 +362,18 @@ def minAddToMakeValid(s: str) -> int:
             else:
                 closes += 1
     return opens + closes
+
+
+# FINAL PRICES WITH SPECIAL DISCOUNT :
+def finalPrices(prices):
+    result = []
+    N = len(prices)
+    for i in range(N):
+        curr = prices[i]
+        discount = 0
+        for j in range(i + 1, N):
+            if j > i and prices[j] <= prices[i]:
+                discount = prices[j]
+                break
+        result.append(curr - discount)
+    return result
