@@ -377,3 +377,13 @@ def finalPrices(prices):
                 break
         result.append(curr - discount)
     return result
+
+
+# MAX CHUNKS TO MAKE IT SORTED :
+def maxChunksToSorted(arr) -> int:
+    max_num, chunks = 0, 0
+    for i, num in enumerate(arr):
+        max_num = max(max_num, num)
+        if max_num == i:
+            chunks += 1
+    return chunks
