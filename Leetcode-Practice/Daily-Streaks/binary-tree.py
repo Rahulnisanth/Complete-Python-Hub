@@ -142,3 +142,15 @@ def calculateQuery(query, heights, levels):
         if node != query:
             return  depth + level if len(same_level) > 1 else level - 1
     return level - 1
+
+# REVERSE ODD LEVELS OF PERFECT BINARY TREE 
+def reverseOddLevels(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+    self.traverse_dfs(root.left, root.right, 0)
+    return root
+def traverse_dfs(self, leftNode, rightNode, level):
+    if not leftNode or not rightNode:
+        return
+    if level % 2 == 0:
+        leftNode.val, rightNode.val = rightNode.val, leftNode.val
+    self.traverse_dfs(leftNode.left, rightNode.right, level + 1)
+    self.traverse_dfs(leftNode.right, rightNode.left, level + 1)
