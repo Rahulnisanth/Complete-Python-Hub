@@ -154,3 +154,22 @@ def traverse_dfs(self, leftNode, rightNode, level):
         leftNode.val, rightNode.val = rightNode.val, leftNode.val
     self.traverse_dfs(leftNode.left, rightNode.right, level + 1)
     self.traverse_dfs(leftNode.right, rightNode.left, level + 1)
+
+
+# FIND LARGEST VALUE IN EACH TREE ROW :
+def largestValues(self, root: Optional[TreeNode]) -> List[int]:
+    result = []
+    def bfs(node):
+        q = deque([node])
+        while q:
+            maxVal = float("-inf")
+            for _ in range(len(q)):
+                curr = q.popleft()
+                maxVal = max(maxVal, curr.val)
+                if curr.left:
+                    q.append(curr.left)
+                if curr.right:
+                    q.append(curr.right)
+            result.append(maxVal)
+    bfs(root)
+    return result
