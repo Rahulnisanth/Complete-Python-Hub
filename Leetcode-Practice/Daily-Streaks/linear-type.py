@@ -387,3 +387,25 @@ def maxChunksToSorted(arr) -> int:
         if max_num == i:
             chunks += 1
     return chunks
+
+
+# COUNT THE VOWELS IN RANGE OF QUERIES :
+def vowelStrings(self, words: List[str], queries: List[List[int]]) -> List[int]:
+    vowels = "aeiou"
+    N = len(words)
+
+    def willSatisfy(word):
+        return True if word[0] in vowels and word[-1] in vowels else False
+
+    prefix_sum = [0] * (N + 1)
+    result = []
+    for i in range(1, N + 1):
+        if willSatisfy(words[i - 1]):
+            prefix_sum[i] = prefix_sum[i - 1] + 1
+        else:
+            prefix_sum[i] = prefix_sum[i - 1]
+
+    for left, right in queries:
+        count = prefix_sum[right + 1] - prefix_sum[left]
+        result.append(count)
+    return result
