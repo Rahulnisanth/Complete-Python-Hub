@@ -24,3 +24,20 @@ def letterCombinations(digits: str):
     
     backtrack('', 0)
     return result
+
+
+# COMBINATION SUM - III
+def combinationSum3(self, k: int, n: int) -> List[List[int]]:
+    result = []
+    self.makeKCombinations(1, n, k, result, [])
+    return result
+def makeKCombinations(self, start, target, K, result, path) -> List[int]:
+    if K == 0 and target == 0:
+        result.append(path[:])
+        return
+    if K == 0 or target <= 0:
+        return
+    for i in range(start, 10):
+        path.append(i)
+        self.makeKCombinations(i + 1, target - i, K - 1, result, path)
+        path.pop()
