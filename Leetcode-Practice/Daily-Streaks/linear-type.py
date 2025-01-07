@@ -409,3 +409,16 @@ def vowelStrings(self, words: List[str], queries: List[List[int]]) -> List[int]:
         count = prefix_sum[right + 1] - prefix_sum[left]
         result.append(count)
     return result
+
+
+# STRING MATCHING :
+def stringMatching(self, words: List[str]) -> List[str]:
+    result = []
+    words.sort(key=lambda x: len(x))
+    for i in range(len(words)):
+        searchWord = words[i]
+        for j in range(i + 1, len(words)):
+            if searchWord in words[j]:
+                result.append(searchWord)
+                break
+    return result
