@@ -60,3 +60,25 @@ def rightSideView(root):
             if node.right:
                 q.append(node.right)
     return result
+
+
+# MAXIMUM LEVEL SUM OF THE BINARY TREE :
+def maxLevelSum(self, root: Optional[TreeNode]) -> int:
+    level = max_level = 1
+    max_sum = float("-inf")
+    q = [root]
+    while q:
+        level_sum = 0
+        next_level = []
+        for node in q:
+            level_sum += node.val
+            if node.left:
+                next_level.append(node.left)
+            if node.right:
+                next_level.append(node.right)
+        if level_sum > max_sum:
+            max_sum = level_sum
+            max_level = level
+        q = next_level
+        level += 1
+    return max_level
