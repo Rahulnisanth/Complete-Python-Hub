@@ -1,61 +1,60 @@
 from collections import deque
 # CONTAIN VIRUS PROBLEM :
-def containVirus(matrix):
-    # Checker for valid position :
-    def is_valid(x, y):
-        return 0 <= x < len(matrix) and 0 <= y < len(matrix[0])
-    
-    # Breadth first search approach & finding the current infected, next infected and walls required :
+def containVirus(isInfected) -> int:
+    N, M = len(isInfected), len(isInfected[0])
+
+    def isValid(i, j):
+        return (0 <= i < N) and (0 <= j < M)
+
     def bfs(i, j, visited):
-        queue = deque([(i, j)])
-        infected = set([(i, j)])
+        q = deque([(i, j)])
+        infected = [(i, j)]
         next_infected = set()
         walls_needed = 0
-        while queue:
-            x, y = queue.popleft()
-            for dx, dy in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
-                newX, newY = x + dx, y + dy
-                if is_valid(newX, newY) and (newX, newY) not in visited:
-                    if matrix[newX][newY] == 1:
-                        infected.add((newX, newY))
-                        queue.append((newX, newY))
-                    elif matrix[newX][newY] == 0:
-                        next_infected.add((newX, newY))
+        while q:
+            x, y = q.popleft()
+            for dx, dy in [(0, 1), (1, 0), (0, -1), (-1, 0)]:
+                nextX, nextY = (x + dx), (y + dy)
+                if isValid(nextX, nextY):
+                    if isInfected[nextX][nextY] == 0:
+                        next_infected.add((nextX, nextY))
                         walls_needed += 1
-                    visited.add((newX, newY))
-        return infected, next_infected, walls_needed
-    
-    # Core logic drive :
-    result = 1
+                    if (
+                        isInfected[nextX][nextY] == 1
+                        and (nextX, nextY) not in visited
+                    ):
+                        visited.add((nextX, nextY))
+                        infected.append((nextX, nextY))
+                        q.append((nextX, nextY))
+        return [infected, next_infected, walls_needed]
+
+    result = 0
     while True:
         regions = []
         visited = set()
-        for i in range(len(matrix)):
-            for j in range(len(matrix[0])):
-                if matrix[i][j] == 1 and (i, j) not in visited:
+        for i in range(N):
+            for j in range(M):
+                if isInfected[i][j] == 1 and (i, j) not in visited:
                     visited.add((i, j))
                     infected, next_infected, walls_needed = bfs(i, j, visited)
                     regions.append((infected, next_infected, walls_needed))
-        # Running the loop until all regions are quarantined :
-        if not regions: 
+        if not regions:
             break
-        # Finding the region with more next infected region :
-        regions.sort(key=lambda x : len(x[1]), reverse=True)
+        regions.sort(key=lambda x: len(x[1]), reverse=True)
         large_infected, large_next_infected, large_walls_needed = regions[0]
-        # If there is only one region :
-        if not large_next_infected: 
+        if not large_next_infected:
             break
-        # The more needed walls should be quarantined first :
+        # Add the walls needed 
         result += large_walls_needed
-        # Quarantining the infected areas :
+        # Quarantine the current infected area
         for i, j in large_infected:
-            matrix[i][j] = 2
-        # Marking the surrounding cells of the next infected area as '1' [marking as infected]:
-        for _infected, next_infected, _walls in regions[1:]:
+            isInfected[i][j] = 2
+        # Spread the virus across next infected area to its neighbours cells all over the region
+        for _, next_infected, _ in regions[1:]:
             for i, j in next_infected:
-                matrix[i][j] = 1
-    return result * 2 if result == 2 else result
-
+                if isInfected[i][j] == 0:
+                    isInfected[i][j] = 1
+    return result
 
 # Input stream :
 grid = eval(input())
