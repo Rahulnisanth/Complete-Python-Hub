@@ -412,7 +412,7 @@ def vowelStrings(self, words: List[str], queries: List[List[int]]) -> List[int]:
 
 
 # STRING MATCHING :
-def stringMatching(self, words: List[str]) -> List[str]:
+def stringMatching(words: List[str]) -> List[str]:
     result = []
     words.sort(key=lambda x: len(x))
     for i in range(len(words)):
@@ -422,3 +422,12 @@ def stringMatching(self, words: List[str]) -> List[str]:
                 result.append(searchWord)
                 break
     return result
+
+
+# COUNT THE WORDS WITH GIVEN PREFIX :
+def prefixCount(words: List[str], pref: str) -> int:
+    count = 0
+    for word in words:
+        if word.startswith(pref):
+            count += 1
+    return count
