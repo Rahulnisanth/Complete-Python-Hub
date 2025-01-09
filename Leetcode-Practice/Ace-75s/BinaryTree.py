@@ -82,3 +82,21 @@ def maxLevelSum(self, root: Optional[TreeNode]) -> int:
         q = next_level
         level += 1
     return max_level
+
+
+# PATH SUM - III :
+def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
+    sums = defaultdict(int)
+    sums[0] = 1
+
+    def dfs(node, currSum):
+        count = 0
+        if node:
+            currSum += node.val
+            count += sums[currSum - targetSum]
+            sums[currSum] += 1
+            count += dfs(node.left, currSum) + dfs(node.right, currSum)
+            sums[currSum] -= 1
+        return count
+
+    return dfs(root, 0)
