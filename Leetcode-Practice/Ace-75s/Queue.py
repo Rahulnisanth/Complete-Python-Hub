@@ -10,7 +10,7 @@ class RecentCounter:
 
 
 # Dota2Senate :
-def predictPartyVictory(self, senate: str) -> str:
+def predictPartyVictory(senate: str) -> str:
     radi, dire = deque([]), deque([])
     N = len(senate)
     for i in range(N):
