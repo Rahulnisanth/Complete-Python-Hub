@@ -30,3 +30,18 @@ def findPeakElement(nums) -> int:
         else:
             left = mid + 1
     return left
+
+
+# SUCCESSFUL PAIRS OF SPELLS AND POTIONS :
+def successfulPairs(
+    self, spells: List[int], potions: List[int], success: int
+) -> List[int]:
+    result = []
+    potions.sort()
+    N = len(potions)
+    for spell in spells:
+        minPotionNeeded = math.ceil(success / spell)
+        potionIDX = bisect.bisect_left(potions, minPotionNeeded)
+        successPairCount = N - (potionIDX)
+        result.append(successPairCount)
+    return result
