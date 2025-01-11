@@ -431,3 +431,12 @@ def prefixCount(words: List[str], pref: str) -> int:
         if word.startswith(pref):
             count += 1
     return count
+
+
+# CAN CONSTRUCT K PALINDROME STRINGS :
+def canConstruct(self, s: str, k: int) -> bool:
+    if len(s) < k:
+        return False
+    counter = Counter(s)
+    odd_count = sum(1 for k, v in counter.items() if v % 2 != 0)
+    return odd_count <= k
