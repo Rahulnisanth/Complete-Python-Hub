@@ -100,3 +100,26 @@ def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
         return count
 
     return dfs(root, 0)
+
+
+# LONGEST ZIG-ZAG PATH IN BST :
+def longestZigZag(self, root: Optional[TreeNode]) -> int:
+    self.maxLength = 0
+
+    def helper(node, length, direction):
+        self.maxLength = max(self.maxLength, length)
+        if node.left:
+            (
+                helper(node.left, length + 1, "left")
+                if direction != "left"
+                else helper(node.left, 1, "left")
+            )
+        if node.right:
+            (
+                helper(node.right, length + 1, "right")
+                if direction != "right"
+                else helper(node.right, 1, "right")
+            )
+
+    helper(root, 0, "")
+    return self.maxLength
