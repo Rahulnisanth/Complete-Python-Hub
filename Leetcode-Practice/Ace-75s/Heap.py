@@ -63,3 +63,19 @@ def totalCost(self, costs: List[int], k: int, candidates: int) -> int:
         k -= 1
 
     return totalCost
+
+
+# MAXIMUM SUB-SEQUENCES SCORE :
+def maxScore(self, nums1: List[int], nums2: List[int], k: int) -> int:
+    heapSum = maxScore = 0
+    heap = []
+    heapify(heap)
+    for num2, num1 in reversed(sorted(zip(nums2, nums1))):
+        heappush(heap, num1)
+        heapSum += num1
+        if len(heap) > k:
+            heapSum -= heappop(heap)
+        if len(heap) == k:
+            maxScore = max(maxScore, heapSum * num2)
+
+    return maxScore
