@@ -31,3 +31,35 @@ class SmallestInfiniteSet:
         if num < self.current_smallest and num not in self.added_back:
             heapq.heappush(self.removed, num)
             self.added_back.add(num)
+
+
+# TOTAL COST TO HIRE K WORKERS :
+def totalCost(self, costs: List[int], k: int, candidates: int) -> int:
+    totalCost, N = 0, len(costs)
+    Lheap = costs[:candidates]
+    heapq.heapify(Lheap)
+    Rheap = costs[max(candidates, N - candidates) :]
+    heapq.heapify(Rheap)
+    left, right = candidates, N - candidates - 1
+    while k > 0:
+        if Lheap and Rheap:
+            if Lheap[0] <= Rheap[0]:
+                totalCost += heapq.heappop(Lheap)
+                if left <= right:
+                    heapq.heappush(Lheap, costs[left])
+                    left += 1
+            else:
+                totalCost += heapq.heappop(Rheap)
+                if left <= right:
+                    heapq.heappush(Rheap, costs[right])
+                    right -= 1
+
+        elif Lheap:
+            totalCost += heappop(Lheap)
+
+        elif Rheap:
+            totalCost += heappop(Rheap)
+
+        k -= 1
+
+    return totalCost
