@@ -44,3 +44,11 @@ def countMaxOrSubsets(nums) -> int:
         exclude = backtrack(idx + 1, curr)
         return include + exclude
     return backtrack(0, 0)
+
+
+# NEIGHOURING BIT-WISE XOR :
+def doesValidArrayExist(derived: List[int]) -> bool:
+    xOrSum = 0
+    for bit in derived:
+        xOrSum ^= bit
+    return xOrSum == 0
