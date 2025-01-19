@@ -61,3 +61,33 @@ def buildAdjacencyMatrix(self, graph, n):
       matrix[a].append((b, True))
       matrix[b].append((a, False))
   return matrix
+
+
+# NEAREST EXIT FROM ENTRANCE OF THE MAZE :
+def nearestExit(self, maze: List[List[str]], entrance: List[int]) -> int:
+  N, M = len(maze), len(maze[0])
+
+  def isValid(i, j):
+      return (0 <= i < N) and (0 <= j < M) and (maze[i][j] == ".")
+
+  def isExit(i, j):
+      return (i == 0 or i == N - 1 or j == 0 or j == M - 1) and [i, j] != entrance
+
+  def bfs(startX, startY, visited):
+      q = deque([(startX, startY, 0)])
+      visited.add((startX, startY))
+      while q:
+          x, y, steps = q.popleft()
+          if isExit(x, y):
+              return steps
+          for dirX, dirY in [(0, 1), (1, 0), (0, -1), (-1, 0)]:
+              newX, newY = x + dirX, y + dirY
+              if isValid(newX, newY) and (newX, newY) not in visited:
+                  q.append((newX, newY, steps + 1))
+                  visited.add((newX, newY))
+      return -1
+
+  startX, startY = entrance
+  visited = set()
+  result = bfs(startX, startY, visited)
+  return result if result > 0 else -1
