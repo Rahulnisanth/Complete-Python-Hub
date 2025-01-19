@@ -91,3 +91,32 @@ def nearestExit(self, maze: List[List[str]], entrance: List[int]) -> int:
   visited = set()
   result = bfs(startX, startY, visited)
   return result if result > 0 else -1
+
+
+# ROTTING ORANGES :
+def orangesRotting(self, grid: List[List[int]]) -> int:
+  N, M = len(grid), len(grid[0])
+  freshCount = 0
+  q = deque([])
+
+  def isValid(i, j):
+      return (0 <= i < N) and (0 <= j < M)
+
+  for i in range(N):
+      for j in range(M):
+          if grid[i][j] == 2:
+              q.append((i, j, 0))
+          if grid[i][j] == 1:
+              freshCount += 1
+
+  maxTime = time = 0
+  while q:
+      x, y, time = q.popleft()
+      maxTime = max(maxTime, time)
+      for dirX, dirY in [(0, 1), (1, 0), (0, -1), (-1, 0)]:
+          newX, newY = x + dirX, y + dirY
+          if isValid(newX, newY) and grid[newX][newY] == 1:
+              grid[newX][newY] = 2
+              freshCount -= 1
+              q.append((newX, newY, time + 1))
+  return maxTime if freshCount == 0 else -1
