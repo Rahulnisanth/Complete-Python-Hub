@@ -109,3 +109,38 @@ def findTargetSumWays(self, nums: List[int], target: int) -> int:
         memo[(idx, curr_sum)] = add + sub
         return memo[(idx, curr_sum)]
     return dfs(0, 0)
+
+
+# TRAPPING RAIN WATER - II :
+def trapRainWater(self, heightMap: List[List[int]]) -> int:
+    N, M = len(heightMap), len(heightMap[0])
+    heap = []
+    visited = set()
+
+    def isValid(i, j):
+        return (0 <= i < N) and (0 <= j < M)
+
+    def isBoundary(i, j):
+        return i == 0 or i == N - 1 or j == 0 or j == M - 1
+
+    for i in range(N):
+        for j in range(M):
+            if isBoundary(i, j):
+                visited.add((i, j))
+                heappush(heap, (heightMap[i][j], i, j))
+    
+    minimumBoundaryHeight = 0
+    volume = 0
+    while heap:
+        currentHeight, x, y = heappop(heap)
+        minimumBoundaryHeight = max(minimumBoundaryHeight, currentHeight)
+        for dirX, dirY in [(1, 0), (0, 1), (-1, 0), (0, -1)]:
+            newX, newY = x + dirX, y + dirY
+            if isValid(newX, newY) and (newX, newY) not in visited:
+                currentHeight = heightMap[newX][newY]
+                if currentHeight < minimumBoundaryHeight:
+                    volume += minimumBoundaryHeight - currentHeight
+                visited.add((newX, newY))
+                heappush(heap, (currentHeight, newX, newY))
+
+    return volume
