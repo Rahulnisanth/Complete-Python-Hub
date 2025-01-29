@@ -72,3 +72,31 @@ class Solution:
                 maxDis += 1
         return farthestNode, maxDis
 
+
+# REDUNDANT CONNECTION [CYCLE DETECTION] :
+def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
+    # cycle detection using dfs
+    def isConnected(u, v):
+        visited = set()
+        stack = [u]
+        while stack:
+            node = stack.pop()
+            if node in visited:
+                continue
+            visited.add(node)
+            if node == v:
+                return True
+            for neighbour in graph[node]:
+                stack.append(neighbour)
+        return False
+
+    # build graph traditional method
+    graph = defaultdict(list)
+    for edge in edges:
+        u, v = edge
+        if u in graph and v in graph and isConnected(u, v):
+            return [u, v]
+        graph[u].append(v)
+        graph[v].append(u)
+
+    return []
