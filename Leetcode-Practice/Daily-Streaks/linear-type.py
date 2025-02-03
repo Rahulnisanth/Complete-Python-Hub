@@ -391,7 +391,8 @@ def maxChunksToSorted(arr) -> int:
 
 # COUNT THE VOWELS IN RANGE OF QUERIES :
 def vowelStrings(self, words: List[str], queries: List[List[int]]) -> List[int]:
-    vowels = "aeiou"
+    vowels = "
+    "
     N = len(words)
 
     def willSatisfy(word):
@@ -440,3 +441,28 @@ def canConstruct(self, s: str, k: int) -> bool:
     counter = Counter(s)
     odd_count = sum(1 for k, v in counter.items() if v % 2 != 0)
     return odd_count <= k
+
+
+# LONGEST STRICTLY INCREAING OR DECREASING SUB-ARRAY LENGTH :
+def longestMonotonicSubarray(self, nums: List[int]) -> int:
+    N = len(nums)
+    result = 0
+    for i in range(N):
+        dump = 1
+        for j in range(i + 1, N):
+            if nums[j] > nums[j - 1]:
+                dump += 1
+            else:
+                break
+        result = max(result, dump)
+
+    for i in range(N):
+        dump = 1
+        for j in range(i + 1, N):
+            if nums[j] < nums[j - 1]:
+                dump += 1
+            else:
+                break
+        result = max(result, dump)
+
+    return result
