@@ -466,3 +466,14 @@ def longestMonotonicSubarray(self, nums: List[int]) -> int:
         result = max(result, dump)
 
     return result
+
+
+# CHECK IF ONE STRING SWAP MAKE TWO STRINGS EQUAL :
+def areAlmostEqual(s1: str, s2: str) -> bool:
+    if len(s1) != len(s2):
+        return False
+    count = 0
+    for i in range(len(s1)):
+        if s1[i] != s2[i]:
+            count += 1
+    return (0 <= count <= 2) and (sorted(s1) == sorted(s2))
