@@ -144,3 +144,30 @@ def repeatLimitedString(self, s: str, repeatLimit: int) -> str:
                 heappush(q, -ord(curr))
 
         return "".join(result)
+
+
+# DESIGN A NUMBER CONTAINER SYSTEM :
+class NumberContainers:
+
+    def __init__(self):
+        self.numToIdx = {}
+        self.idxToNum = {}
+
+    def change(self, index: int, number: int) -> None:
+        self.idxToNum[index] = number
+        if number not in self.numToIdx:
+            self.numToIdx[number] = []
+        heappush(self.numToIdx[number], index)
+
+    def find(self, number: int) -> int:
+        if number not in self.numToIdx:
+            return -1
+        q = self.numToIdx[number]
+        while q:
+            idx = q[0]
+            if self.idxToNum[idx] != number:
+                heappop(self.numToIdx[number])
+            else:
+                return idx
+        return -1
+
