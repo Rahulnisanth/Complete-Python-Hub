@@ -46,4 +46,39 @@ else:
     printSolution(board)
 
 
-
+# FINDING ALL POSSIBLE SOLUTIONS TO SOLVE N-QUEENS :
+def solveNQueens(self, n: int) -> List[List[str]]:
+	RESULT = []
+	# Board
+	board = [["."] * n for _ in range(n)]
+	
+	def is_safe(board, row, col):
+	    # left row
+	    for i in range(col):
+		if board[row][i] == "Q":
+		    return False
+	    # upper diagonal
+	    for i, j in zip(range(row, -1, -1), range(col, -1, -1)):
+		if board[i][j] == "Q":
+		    return False
+	    # lower diagonal
+	    for i, j in zip(range(row, n), range(col, -1, -1)):
+		if board[i][j] == "Q":
+		    return False
+	    return True
+	
+	def solve(board, col):
+	    if col >= n:
+		RESULT.append(["".join(board[i]) for i in range(n)])
+		return
+	    for i in range(n):
+		if is_safe(board, i, col):
+		    board[i][col] = "Q"
+		    if solve(board, col + 1):
+			return True
+		    board[i][col] = "."
+	
+	solve(board, 0)
+	return RESULT
+	
+	
