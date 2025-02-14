@@ -477,3 +477,25 @@ def areAlmostEqual(s1: str, s2: str) -> bool:
         if s1[i] != s2[i]:
             count += 1
     return (0 <= count <= 2) and (sorted(s1) == sorted(s2))
+
+
+# PRODUCT OF LAST K NUMBERS :
+class ProductOfNumbers:
+
+    def __init__(self):
+        self.data = [1]
+        self.size = 0
+
+    def add(self, num: int) -> None:
+        if num == 0:
+            self.data = [1]
+            self.size = 0
+        else:
+            self.data.append(self.data[self.size] * num)
+            self.size += 1
+        
+
+    def getProduct(self, k: int) -> int:
+        if k > self.size:
+            return 0
+        return self.data[self.size] // self.data[self.size - k]
