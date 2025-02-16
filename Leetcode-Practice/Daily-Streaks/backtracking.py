@@ -144,3 +144,39 @@ def trapRainWater(self, heightMap: List[List[int]]) -> int:
                 heappush(heap, (currentHeight, newX, newY))
 
     return volume
+
+
+# CONSTRUCT LEXICOGRAPHICAL LARGEST VALID SEQUENCE :
+def constructDistancedSequence(n: int) -> List[int]:
+    N = (2 * n - 1)
+    sequence = [0] * N
+    visited = set()
+
+    def backtrack(i):
+        if i == N:
+            return True
+        if sequence[i]:
+            return backtrack(i + 1)
+
+        for num in range(n, 0, -1):
+            if num in visited:
+                continue
+
+            _next = i + num if num > 1 else i
+
+            if _next >= N or sequence[_next] != 0:
+                continue
+
+            sequence[i] = sequence[_next] = num
+            visited.add(num)
+
+            if backtrack(i + 1):
+                return True
+
+            sequence[i] = sequence[_next] = 0
+            visited.remove(num)
+
+        return False
+
+    backtrack(0)
+    return sequence
