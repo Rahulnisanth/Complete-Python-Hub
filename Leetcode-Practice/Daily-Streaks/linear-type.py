@@ -499,3 +499,25 @@ class ProductOfNumbers:
         if k > self.size:
             return 0
         return self.data[self.size] // self.data[self.size - k]
+
+
+# LONGEST PALINDROME BY CONCATENATING TWO STRINGS :
+def longestPalindrome(self, words: List[str]) -> int:
+    count = Counter(words)
+    used_center = False
+    answer = 0
+    for word in list(count.keys()):
+        rev = word[::-1]
+        if word != rev:
+            pairs = min(count[word], count[rev])
+            answer += (pairs * 4)
+            count[word] -= pairs
+            count[rev] -= pairs
+        else:
+            pairs = (count[word] // 2)
+            answer += (pairs * 4)
+            count[word] -= (pairs * 2)
+            if not used_center and count[word] > 0:
+                answer += 2
+                used_center = True
+    return answer
