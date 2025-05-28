@@ -521,3 +521,15 @@ def longestPalindrome(self, words: List[str]) -> int:
                 answer += 2
                 used_center = True
     return answer
+
+
+# ASSIGN COOKIES :
+def findContentChildren(g: List[int], s: List[int]) -> int:
+    g.sort()
+    s.sort()
+    content, cookies = 0, 0
+    while content < len(g) and cookies < len(s):
+        if g[content] <= s[cookies]:
+           content += 1
+        cookies += 1
+    return content
