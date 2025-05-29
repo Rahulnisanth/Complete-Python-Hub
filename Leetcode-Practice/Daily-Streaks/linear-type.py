@@ -533,3 +533,11 @@ def findContentChildren(g: List[int], s: List[int]) -> int:
            content += 1
         cookies += 1
     return content
+
+
+# CONSTRUCT THE RECTANGLE :
+def constructRectangle(area: int) -> List[int]:
+    W = int(math.sqrt(area))
+    while area % W != 0: 
+        W -= 1
+    return [area // W, W]
