@@ -541,3 +541,18 @@ def constructRectangle(area: int) -> List[int]:
     while area % W != 0: 
         W -= 1
     return [area // W, W]
+
+
+# LICENSE KEY FORMATTING :
+def licenseKeyFormatting(s: str, k: int) -> str:
+    count, answer = 0, ['']
+    for ch in reversed(s):
+        if ch != '-':
+            answer += ch.upper()
+            count += 1
+            if count == k:
+                answer += '-'
+                count = 0
+    if len(answer) > 0 and answer[-1] == '-':
+        answer = answer[:-1]
+    return ''.join(answer[::-1])
