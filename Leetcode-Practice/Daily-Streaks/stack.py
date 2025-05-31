@@ -78,3 +78,15 @@ def parseBoolExpr(self, expression: str) -> bool:
             stack.append(char)
     
     return to_bool(stack.pop())
+
+
+# REVERSE ONLY THE LETTERS :
+def reverseOnlyLetters(self, s: str) -> str:
+    stack = [ch for ch in s if ch.isalpha()]
+    answer = ''
+    for ch in s:
+        if ch.isalpha():
+            answer += stack.pop()
+        else:
+            answer += ch
+    return answer
