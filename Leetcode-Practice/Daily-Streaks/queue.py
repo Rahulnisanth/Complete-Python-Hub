@@ -171,3 +171,20 @@ class NumberContainers:
                 return idx
         return -1
 
+
+# LEXICOGRAPHICALLY MINIMUM STRING AFTER REMOVING STARS :
+def clearStars(self, s: str) -> str:
+    N, queue, mapper = len(s), [], {}
+    keep = [True] * N
+    for i in range(N):
+        char = s[i]
+        if char == "*":
+            small = heapq.heappop(queue)
+            idx = mapper[small].pop()
+            keep[i] = keep[idx] = False
+        else:
+            heapq.heappush(queue, char)
+            if char not in mapper:
+                mapper[char] = []
+            mapper[char].append(i)
+    return "".join(ch for i, ch in enumerate(s) if keep[i])
