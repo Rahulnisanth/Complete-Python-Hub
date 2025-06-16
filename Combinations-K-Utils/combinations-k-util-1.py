@@ -12,6 +12,7 @@ def make_combinations(n, k):
     make_k_combinations(n, 0, k, result, [])
     return result
 
+# Input Handlers
 n = int(input())
 k = int(input())
 print(make_combinations(n, k))
