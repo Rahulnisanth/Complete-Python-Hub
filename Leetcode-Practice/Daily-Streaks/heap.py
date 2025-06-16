@@ -1,4 +1,4 @@
-# MIN OPERATIONS TO EXCEED THE THRESHOLD VALUE II :
+# MIN OPERATIONS TO EXCEED THE THRESHOLD VALUE:
 def minOperations(self, nums: List[int], k: int) -> int:
       count = 0
       heapify(nums)
