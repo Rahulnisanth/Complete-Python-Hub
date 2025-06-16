@@ -70,7 +70,7 @@ print("Final Vertices :")
 print(stack)
 print(min_steps)    
 
-
+# Example test case
 '''
 0, 1, 1, 1, 0, 1, 1, 1, 1, 1
 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
